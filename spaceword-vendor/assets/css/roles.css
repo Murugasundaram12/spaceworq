@@ -1,0 +1,242 @@
+/* ==========================================================================
+   AdminPanel — Roles Page Styles
+   ========================================================================== */
+
+.roles-page-header {
+  margin-bottom: 22px;
+}
+
+.roles-page-title {
+  font-family: var(--sw-font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--sw-text-dark);
+  margin: 0 0 6px;
+  line-height: 1.2;
+}
+
+.roles-page-subtitle {
+  font-size: 0.885rem;
+  color: var(--sw-text-muted);
+  margin: 0;
+}
+
+/* Primary Prompt / Empty Card (matches reference screenshot) */
+.roles-surface-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.88);
+  box-shadow: 0 4px 18px rgba(99, 117, 168, 0.065);
+  padding: 22px 24px;
+}
+
+.roles-empty-prompt {
+  font-size: 0.94rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Populated Roles View (when a specific workspace is selected) */
+.roles-workspace-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #edf1f7;
+}
+
+.roles-workspace-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.roles-workspace-heading {
+  font-family: var(--sw-font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--sw-text-dark);
+  margin: 0;
+}
+
+.roles-workspace-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 99px;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  background-color: #f5f6ff;
+  color: #4f46e5;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.btn-roles-primary {
+  height: 40px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 10px;
+  background-color: #5246e5;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(82, 70, 229, 0.24);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-roles-primary:hover {
+  background-color: #4337d4;
+  color: #ffffff;
+}
+
+.roles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 16px;
+}
+
+.role-definition-card {
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  background: linear-gradient(160deg, #ffffff 0%, #f8faff 100%);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.role-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.role-card-name {
+  font-family: var(--sw-font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 3px;
+}
+
+.role-card-desc {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.role-perm-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.role-perm-chip {
+  padding: 4px 10px;
+  border-radius: 8px;
+  background-color: #eef0fd;
+  color: #4f46e5;
+  font-size: 0.74rem;
+  font-weight: 500;
+}
+
+.role-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.role-icon-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #64748b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.14s ease, color 0.14s ease;
+}
+
+.role-icon-btn:hover {
+  background-color: rgba(100, 116, 139, 0.12);
+  color: #0f172a;
+}
+
+.role-icon-btn.btn-delete {
+  color: #dc2626;
+}
+
+.role-icon-btn.btn-delete:hover {
+  background-color: rgba(220, 38, 38, 0.1);
+}
+
+/* Modal */
+.roles-modal .modal-content {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.18);
+}
+
+.roles-modal .modal-header {
+  border-bottom: 1px solid #edf1f7;
+  padding: 18px 22px;
+}
+
+.roles-modal .modal-title {
+  font-family: var(--sw-font-heading);
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.roles-modal .modal-body {
+  padding: 20px 22px;
+}
+
+.roles-perm-checks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.roles-perm-check-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: #1e293b;
+  cursor: pointer;
+  margin: 0;
+}
+
+.roles-perm-check-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #5246e5;
+}
+
+@media (max-width: 767.98px) {
+  .roles-page-title {
+    font-size: 1.6rem;
+  }
+
+  .roles-perm-checks {
+    grid-template-columns: 1fr;
+  }
+}

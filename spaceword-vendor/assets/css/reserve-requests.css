@@ -1,0 +1,395 @@
+/* ==========================================================================
+   AdminPanel — Reserve Requests Page Styles
+   ========================================================================== */
+
+.rr-hero-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: nowrap;
+  padding: 22px 26px;
+  border-radius: 18px;
+  background: linear-gradient(
+    95deg,
+    rgba(208, 217, 250, 0.74) 0%,
+    rgba(218, 226, 251, 0.58) 48%,
+    rgba(191, 229, 248, 0.76) 100%
+  );
+  border: 1px solid rgba(139, 174, 236, 0.45);
+  box-shadow: 0 4px 20px rgba(79, 107, 180, 0.06);
+  margin-bottom: 20px;
+}
+
+.ibr-hero-copy {
+  flex: 1 1 auto;
+  min-width: 240px;
+  max-width: 340px;
+}
+
+.rr-hero-title {
+  font-family: var(--sw-font-heading);
+  font-size: 1.72rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--sw-text-dark);
+  margin: 0 0 6px;
+  line-height: 1.18;
+}
+
+.rr-hero-subtitle {
+  font-size: 0.84rem;
+  line-height: 1.48;
+  color: var(--sw-text-muted);
+  margin: 0;
+}
+
+.rr-hero-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.rr-workspace-dropdown {
+  min-width: 196px;
+  width: 196px;
+}
+
+.rr-status-dropdown {
+  min-width: 158px;
+  width: 158px;
+}
+
+.rr-hero-filters .workspace-filter-label {
+  color: #64748b;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.rr-hero-filters .workspace-filter-trigger {
+  height: 42px;
+  font-size: 0.875rem;
+  padding: 0 12px 0 13px;
+  border-color: rgba(148, 163, 184, 0.42);
+}
+
+/* Reset Past Bookings Outlined Button (Instant Booking Requests) */
+.btn-reset-past {
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid #2b3f66;
+  background-color: rgba(255, 255, 255, 0.22);
+  color: #1a2b4c;
+  font-size: 0.83rem;
+  font-weight: 600;
+  font-style: italic;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.08s ease;
+}
+
+.btn-reset-past:hover {
+  background-color: rgba(255, 255, 255, 0.65);
+  border-color: #0f172a;
+}
+
+.btn-reset-past:active {
+  transform: translateY(1px);
+}
+
+.btn-reset-past svg.is-spinning {
+  animation: rrSpin 0.65s linear infinite;
+}
+
+@keyframes rrSpin {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.rr-inline-toast {
+  display: none;
+  margin-bottom: 16px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background-color: #ecfdf3;
+  border: 1px solid #a6f4c5;
+  color: #067647;
+  font-size: 0.84rem;
+  font-weight: 500;
+}
+
+.rr-inline-toast.show {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* ==========================================================================
+   Status Summary Pill Strip
+   ========================================================================== */
+
+.rr-status-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 16px;
+  background-color: #ffffff;
+  border-radius: 14px;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 4px 16px rgba(99, 117, 168, 0.06);
+  margin-bottom: 20px;
+}
+
+.rr-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 7px 5px 12px;
+  border-radius: 99px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+  line-height: 1.1;
+  transition: background-color 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease, transform 0.08s ease;
+}
+
+.rr-status-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.07);
+}
+
+.rr-status-pill.active {
+  box-shadow: 0 0 0 2px rgba(82, 70, 229, 0.18);
+  font-weight: 600;
+}
+
+.rr-pill-count {
+  min-width: 21px;
+  height: 21px;
+  padding: 0 6px;
+  border-radius: 99px;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Individual Pill Accent Themes */
+.rr-pill-total {
+  border-color: #a5b4fc;
+  background-color: #f5f6ff;
+  color: #3730a3;
+}
+.rr-pill-total .rr-pill-count {
+  background-color: #5246e5;
+}
+
+.rr-pill-open {
+  border-color: #fdba74;
+  background-color: #fffaf5;
+  color: #6b4b2a;
+}
+.rr-pill-open .rr-pill-count {
+  background-color: #ea6c00;
+}
+
+.rr-pill-progress,
+.rr-pill-review,
+.rr-pill-discussion {
+  border-color: #7dd3fc;
+  background-color: #f5fbff;
+  color: #335c75;
+}
+.rr-pill-progress .rr-pill-count,
+.rr-pill-review .rr-pill-count,
+.rr-pill-discussion .rr-pill-count {
+  background-color: #0284c7;
+}
+
+.rr-pill-completed {
+  border-color: #86efac;
+  background-color: #f4fdf7;
+  color: #25603e;
+}
+.rr-pill-completed .rr-pill-count {
+  background-color: #16a34a;
+}
+
+.rr-pill-cancelled {
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+  color: #475569;
+}
+.rr-pill-cancelled .rr-pill-count {
+  background-color: #52525b;
+}
+
+.rr-pill-rejected {
+  border-color: #fca5a5;
+  background-color: #fff6f6;
+  color: #7f3a3a;
+}
+.rr-pill-rejected .rr-pill-count {
+  background-color: #dc2626;
+}
+
+/* ==========================================================================
+   Reserve Requests Table Card
+   ========================================================================== */
+
+.rr-table-card {
+  background-color: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 4px 18px rgba(99, 117, 168, 0.07);
+  overflow: hidden;
+}
+
+.rr-table-scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #9ca3af #f1f5f9;
+}
+
+.rr-table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.rr-table thead tr {
+  background: linear-gradient(90deg, #e2e7fb 0%, #e7ecfc 52%, #dff1fa 100%);
+}
+
+.rr-table thead th {
+  padding: 15px 16px;
+  font-size: 0.81rem;
+  font-weight: 600;
+  color: #1e293b;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(203, 213, 225, 0.65);
+  line-height: 1.35;
+}
+
+.rr-table tbody td {
+  padding: 16px;
+  font-size: 0.84rem;
+  color: #1e293b;
+  vertical-align: middle;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.rr-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rr-empty-cell {
+  text-align: center;
+  padding: 44px 20px !important;
+  color: #64748b;
+  font-size: 0.88rem;
+}
+
+.rr-move-select {
+  min-width: 132px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  color: #0f172a;
+  background-color: #ffffff;
+}
+
+.rr-move-select:focus {
+  border-color: #5246e5;
+  box-shadow: 0 0 0 3px rgba(82, 70, 229, 0.14);
+  outline: none;
+}
+
+@media (max-width: 1199.98px) {
+  .rr-hero-banner {
+    padding: 18px 20px;
+    gap: 14px;
+  }
+
+  .ibr-hero-copy {
+    min-width: 190px;
+  }
+
+  .rr-hero-title {
+    font-size: 1.48rem;
+  }
+
+  .rr-hero-filters {
+    gap: 8px;
+  }
+
+  .btn-reset-past {
+    padding: 0 12px;
+    font-size: 0.78rem;
+  }
+
+  .rr-workspace-dropdown {
+    width: 170px;
+    min-width: 170px;
+  }
+
+  .rr-status-dropdown {
+    width: 138px;
+    min-width: 138px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .rr-hero-banner {
+    flex-wrap: wrap;
+  }
+
+  .ibr-hero-copy {
+    max-width: none;
+  }
+
+  .rr-hero-filters {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .rr-hero-banner {
+    padding: 20px;
+  }
+
+  .rr-hero-title {
+    font-size: 1.48rem;
+  }
+
+  .rr-hero-filters {
+    width: 100%;
+  }
+
+  .btn-reset-past,
+  .rr-workspace-dropdown,
+  .rr-status-dropdown {
+    width: 100%;
+    min-width: 0;
+  }
+}

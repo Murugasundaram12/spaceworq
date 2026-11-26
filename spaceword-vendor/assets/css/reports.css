@@ -1,0 +1,432 @@
+/* ==========================================================================
+   AdminPanel — Detail Report Pages (Reserve & Instant Booking Reports)
+   ========================================================================== */
+
+/* Active Submenu Link Highlight in Sidebar */
+.sidebar-submenu-link.active {
+  color: #ffffff;
+  background: rgba(96, 150, 248, 0.22);
+  font-weight: 600;
+}
+
+/* Main Frosted Report Container Card */
+.report-shell-card {
+  border-radius: 22px;
+  background: linear-gradient(
+    155deg,
+    rgba(232, 238, 255, 0.78) 0%,
+    rgba(255, 255, 255, 0.94) 34%,
+    rgba(237, 246, 255, 0.92) 100%
+  );
+  border: 1px solid rgba(182, 204, 242, 0.55);
+  box-shadow: 0 8px 30px rgba(99, 117, 168, 0.085);
+  padding: 24px 26px 26px;
+}
+
+/* Report Header */
+.report-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.report-page-title {
+  font-family: var(--sw-font-heading);
+  font-size: 1.62rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--sw-text-dark);
+  margin: 0 0 4px;
+  line-height: 1.2;
+}
+
+.report-page-subtitle {
+  font-size: 0.855rem;
+  color: var(--sw-text-muted);
+  margin: 0;
+}
+
+.report-live-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 15px;
+  border-radius: 99px;
+  border: 1px solid #9fa6f5;
+  background-color: #ffffff;
+  color: #5246e5;
+  font-size: 0.79rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   3 Pastel KPI Summary Cards
+   ========================================================================== */
+
+.report-kpi-card {
+  border-radius: 16px;
+  padding: 16px 20px 18px;
+  border: 1px solid transparent;
+  height: 100%;
+}
+
+.report-kpi-lavender {
+  background: linear-gradient(135deg, #e7eafc 0%, #f1f3fe 100%);
+  border-color: #ccd3f8;
+}
+
+.report-kpi-sky {
+  background: linear-gradient(135deg, #e9f2fd 0%, #f2f7fe 100%);
+  border-color: #c7dff8;
+}
+
+.report-kpi-mint {
+  background: linear-gradient(135deg, #e8f7f3 0%, #f1fbf8 100%);
+  border-color: #c0e6da;
+}
+
+.report-kpi-label {
+  font-size: 0.81rem;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.report-kpi-value {
+  font-family: var(--sw-font-heading);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--sw-text-dark);
+  line-height: 1.15;
+}
+
+/* ==========================================================================
+   Left Column: Bordered Filter Box & Dark-Header Table
+   ========================================================================== */
+
+.report-filter-box {
+  background-color: #ffffff;
+  border: 1px solid #64748b;
+  border-radius: 16px;
+  padding: 15px 16px;
+  margin-bottom: 16px;
+}
+
+.report-filter-row-top {
+  display: grid;
+  grid-template-columns: minmax(145px, 1fr) minmax(145px, 1fr) minmax(145px, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.report-filter-row-bottom {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  align-items: center;
+}
+
+.report-field {
+  position: relative;
+}
+
+.report-field-label {
+  position: absolute;
+  top: -8px;
+  left: 11px;
+  padding: 0 4px;
+  font-size: 0.69rem;
+  font-weight: 500;
+  color: #64748b;
+  background-color: #ffffff;
+  line-height: 1.1;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.report-field-label.label-accent {
+  color: #5246e5;
+}
+
+.report-input,
+.report-select {
+  width: 100%;
+  height: 42px;
+  padding: 6px 12px;
+  border-radius: 9px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  font-size: 0.855rem;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.report-input:focus,
+.report-select:focus {
+  border-color: #5246e5;
+  box-shadow: 0 0 0 3px rgba(82, 70, 229, 0.13);
+}
+
+.btn-report-reset {
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 9px;
+  border: 1px solid #a5b4fc;
+  background-color: #ffffff;
+  color: #5246e5;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-report-reset:hover {
+  background-color: #f5f6ff;
+  border-color: #5246e5;
+}
+
+/* Dark Navy Table Card */
+.report-table-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.report-table-scroll {
+  overflow-x: auto;
+}
+
+.report-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.report-table thead tr {
+  background-color: #0f172a;
+}
+
+.report-table thead th {
+  padding: 13px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.report-table tbody td {
+  padding: 14px;
+  font-size: 0.83rem;
+  color: #1e293b;
+  border-bottom: 1px solid #eef2f7;
+  vertical-align: middle;
+}
+
+.report-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.report-empty-cell {
+  text-align: center;
+  padding: 24px 18px !important;
+  color: #475569;
+  font-size: 0.855rem;
+}
+
+/* ==========================================================================
+   Right Column: Analytics Cards & Export CSV
+   ========================================================================== */
+
+.report-analytics-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+}
+
+/* Card 1: Request Status Distribution (Warm Cream) */
+.report-dist-card {
+  border-radius: 16px;
+  background: linear-gradient(160deg, #f6f1e6 0%, #faf6ec 100%);
+  border: 1px solid #e4dcc8;
+  padding: 18px 20px 20px;
+}
+
+.report-card-heading {
+  font-family: var(--sw-font-heading);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 14px;
+}
+
+.report-donut-wrap {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.report-donut-svg {
+  width: 122px;
+  height: 122px;
+  flex-shrink: 0;
+}
+
+.report-donut-center-text {
+  font-family: var(--sw-font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  fill: #0f172a;
+}
+
+.report-donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: #475569;
+}
+
+.report-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.report-legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Card 2: Requests by Date (Soft Sky Blue) */
+.report-date-card {
+  border-radius: 16px;
+  background: linear-gradient(160deg, #dff0fc 0%, #edf6fe 100%);
+  border: 1px solid #b5dcf7;
+  padding: 18px 20px;
+  min-height: 235px;
+  display: flex;
+  flex-direction: column;
+}
+
+.report-date-body {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.report-date-empty {
+  font-size: 0.83rem;
+  color: #64748b;
+  margin: 0;
+  text-align: center;
+}
+
+/* Card 3: Compact Summary Pills Box (Soft Lavender) */
+.report-pills-card {
+  border-radius: 16px;
+  background: linear-gradient(160deg, #e2e7fa 0%, #edf0fc 100%);
+  border: 1px solid #c3ccf2;
+  padding: 14px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.report-pill-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  border-radius: 10px;
+  background-color: #5246e5;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.report-pill-outline {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  border-radius: 10px;
+  border: 1px solid #b8c4de;
+  background-color: rgba(255, 255, 255, 0.45);
+  color: #1e293b;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+/* Export CSV Button Row */
+.report-export-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2px;
+}
+
+.btn-export-csv {
+  height: 40px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #5246e5;
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-export-csv:hover:not(:disabled) {
+  background-color: #4337d4;
+}
+
+.btn-export-csv:disabled {
+  background-color: #cbd5e1;
+  color: #7c8798;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 991.98px) {
+  .report-shell-card {
+    padding: 18px 16px 20px;
+  }
+
+  .report-filter-row-top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .report-filter-row-bottom {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .report-page-title {
+    font-size: 1.35rem;
+  }
+
+  .report-filter-row-top {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-report-reset {
+    width: 100%;
+  }
+}

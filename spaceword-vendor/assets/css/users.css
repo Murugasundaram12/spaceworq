@@ -1,0 +1,332 @@
+/* ==========================================================================
+   AdminPanel — Users Page Styles
+   ========================================================================== */
+
+.users-page-header {
+  margin-bottom: 22px;
+}
+
+.users-page-title {
+  font-family: var(--sw-font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--sw-text-dark);
+  margin: 0 0 6px;
+  line-height: 1.2;
+}
+
+.users-page-subtitle {
+  font-size: 0.885rem;
+  color: var(--sw-text-muted);
+  margin: 0;
+}
+
+/* Top Workspace Picker + Register Action Card */
+.users-toolbar-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 4px 18px rgba(99, 117, 168, 0.065);
+  margin-bottom: 20px;
+}
+
+.users-workspace-picker {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.users-workspace-picker .workspace-filter-label {
+  background: #ffffff;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.14s ease, transform 0.14s ease;
+}
+
+.users-workspace-picker.has-value .workspace-filter-label,
+.users-workspace-picker.open .workspace-filter-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.users-workspace-picker .workspace-filter-trigger {
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.94rem;
+}
+
+.users-workspace-picker:not(.has-value) .workspace-filter-trigger {
+  color: #64748b;
+}
+
+.users-workspace-picker.open .workspace-filter-trigger {
+  border-color: #5246e5;
+  box-shadow: 0 0 0 3px rgba(82, 70, 229, 0.13);
+}
+
+/* Register New User CTA (Disabled + Active States) */
+.btn-register-user {
+  flex: 0 0 285px;
+  height: 44px;
+  border: none;
+  border-radius: 10px;
+  background-color: #5246e5;
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(82, 70, 229, 0.24);
+  transition: background-color 0.16s ease, box-shadow 0.16s ease, color 0.16s ease, transform 0.08s ease;
+}
+
+.btn-register-user:hover:not(:disabled) {
+  background-color: #4337d4;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(82, 70, 229, 0.32);
+}
+
+.btn-register-user:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-register-user:disabled {
+  background-color: #e2e4e9;
+  color: #9aa3b2;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Workspace Users Container Card */
+.users-list-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 4px 18px rgba(99, 117, 168, 0.065);
+  padding: 24px 26px;
+}
+
+.users-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.users-list-title {
+  font-family: var(--sw-font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--sw-text-dark);
+  margin: 0;
+}
+
+.users-count-pill {
+  display: none;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 99px;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  background-color: #f5f6ff;
+  color: #4f46e5;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.users-count-pill.visible {
+  display: inline-flex;
+}
+
+.users-empty-msg {
+  font-size: 0.885rem;
+  color: var(--sw-text-muted);
+  margin: 0;
+  padding: 4px 0 6px;
+}
+
+/* Users Table (shown after workspace is selected) */
+.users-table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #edf1f7;
+}
+
+.users-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.users-table thead tr {
+  background: linear-gradient(90deg, #e5e9fc 0%, #eaf0fd 55%, #e2f2fb 100%);
+}
+
+.users-table thead th {
+  padding: 13px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1e293b;
+  text-align: left;
+  border-bottom: 1px solid rgba(203, 213, 225, 0.6);
+}
+
+.users-table tbody td {
+  padding: 14px 16px;
+  font-size: 0.855rem;
+  color: #1e293b;
+  vertical-align: middle;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.users-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.users-table tbody tr:hover {
+  background-color: rgba(244, 247, 255, 0.6);
+}
+
+.user-identity-cell {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.user-avatar-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5246e5 0%, #3b6ef6 100%);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.user-name-text {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.user-role-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background-color: #eef0fd;
+  color: #4f46e5;
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.user-action-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.user-icon-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.14s ease, color 0.14s ease;
+}
+
+.user-icon-btn.btn-edit {
+  color: #6b7280;
+}
+
+.user-icon-btn.btn-edit:hover {
+  background-color: rgba(107, 114, 128, 0.12);
+  color: #1f2937;
+}
+
+.user-icon-btn.btn-delete {
+  color: #dc2626;
+}
+
+.user-icon-btn.btn-delete:hover {
+  background-color: rgba(220, 38, 38, 0.1);
+}
+
+/* Modal Customization */
+.users-modal .modal-content {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.18);
+}
+
+.users-modal .modal-header {
+  border-bottom: 1px solid #edf1f7;
+  padding: 18px 22px;
+}
+
+.users-modal .modal-title {
+  font-family: var(--sw-font-heading);
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.users-modal .modal-body {
+  padding: 20px 22px;
+}
+
+.users-modal .form-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 5px;
+}
+
+.users-modal .form-control,
+.users-modal .form-select {
+  border-radius: 9px;
+  font-size: 0.875rem;
+  border-color: #cbd5e1;
+  padding: 9px 12px;
+}
+
+.users-modal .form-control:focus,
+.users-modal .form-select:focus {
+  border-color: #5246e5;
+  box-shadow: 0 0 0 3px rgba(82, 70, 229, 0.14);
+}
+
+@media (max-width: 767.98px) {
+  .users-toolbar-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-register-user {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .users-page-title {
+    font-size: 1.6rem;
+  }
+}
