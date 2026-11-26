@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpaceWorq - Expansion Opportunities</title>
+  <meta name="description" content="Discover new buildings and commercial spaces where SPACEWORQ can help you launch or expand your next centre across India." />
+  <meta name="keywords" content="commercial real estate, new buildings, office expansion, coworking expansion, India, SpaceWorq" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="SpaceWorq - Expansion Opportunities" />
+  <meta property="og:description" content="Discover new buildings and commercial spaces where SPACEWORQ can help you launch or expand your next centre." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.spaceworq.com/expansion" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    /* Specific styles for Expansion Page (Matching Screenshot) */
+    body.expansion-page-body {
+      background-color: #EEF2F6;
+    }
+
+    .expansion-page-container {
+      padding: 32px 0 60px 0;
+    }
+
+    /* Hero Card Box */
+    .exp-hero-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(200, 225, 226, 0.7);
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    }
+
+    .exp-kicker {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .exp-title {
+      font-size: 2.15rem;
+      font-weight: 800;
+      color: #17363B;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .exp-copy {
+      font-size: 0.98rem;
+      color: #6B858A;
+      line-height: 1.5;
+    }
+
+    /* Filters Row */
+    .exp-controls-row {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .exp-filters-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* City Pill Dropdown */
+    .exp-city-dropdown-wrap {
+      position: relative;
+    }
+
+    .exp-city-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #17363B;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: var(--transition);
+    }
+
+    .exp-city-pill-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .exp-city-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      width: 220px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+      list-style: none;
+      padding: 6px 0;
+      z-index: 50;
+      display: none;
+    }
+
+    .exp-city-menu.open {
+      display: block;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .exp-city-item {
+      padding: 9px 16px;
+      font-size: 0.88rem;
+      color: #17363B;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .exp-city-item:hover, .exp-city-item.active {
+      background: #F0FBFE;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Subtype Chips */
+    .exp-chips-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .exp-chip-btn {
+      padding: 7px 18px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-color);
+      background: #FFFFFF;
+      color: #17363B;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .exp-chip-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .exp-chip-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(0, 108, 118, 0.25);
+    }
+
+    /* Search Box */
+    .exp-search-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 10px 16px;
+      max-width: 480px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    .exp-search-wrap svg {
+      width: 17px;
+      height: 17px;
+      color: #94A3B8;
+      flex-shrink: 0;
+    }
+
+    .exp-search-input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-size: 0.925rem;
+      color: #17363B;
+    }
+
+    .exp-search-input::placeholder {
+      color: #94A3B8;
+    }
+
+    /* Results Header */
+    .exp-results-header {
+      margin-bottom: 24px;
+    }
+
+    .exp-results-count {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #17363B;
+    }
+
+    /* Empty State (Matching Screenshot) */
+    .exp-empty-state-box {
+      background: transparent;
+      padding: 70px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .exp-empty-icon {
+      width: 52px;
+      height: 52px;
+      color: #94A3B8;
+      margin-bottom: 14px;
+      stroke-width: 1.6;
+    }
+
+    .exp-empty-text {
+      font-size: 0.95rem;
+      color: #64748B;
+      font-weight: 500;
+    }
+
+    /* Opportunities Cards Grid (When spaces are shown) */
+    .exp-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    /* Bottom Feature Highlights (2-Column Grid Matching Screenshot) */
+    .exp-features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .exp-feature-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(200, 225, 226, 0.7);
+      border-radius: 14px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      transition: var(--transition);
+    }
+
+    .exp-feature-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 108, 118, 0.08);
+    }
+
+    .exp-feature-icon {
+      width: 32px;
+      height: 32px;
+      color: var(--primary);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .exp-feature-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #17363B;
+      margin-bottom: 6px;
+    }
+
+    .exp-feature-text {
+      font-size: 0.88rem;
+      color: #6B858A;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .exp-features-grid {
+        grid-template-columns: 1fr;
+      }
+      .exp-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .exp-title {
+        font-size: 1.65rem;
+      }
+    }
+  </style>
+</head>
+<body class="expansion-page-body">
+
+  <!-- ==========================================================================
+       Header & Navigation (Exact SpaceWorq Design)
+       ========================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <!-- Logo + Tagline -->
+      <a href="index.html" class="brand-logo-wrap" id="brandLogo">
+        <img src="assets/images/logo.png" alt="SpaceWorq" class="brand-logo-img" />
+        <div class="brand-text-block">
+          <div class="brand-name-main">SpaceWorq</div>
+          <div class="brand-tagline">You are in the right place</div>
+        </div>
+      </a>
+
+      <!-- Center Desktop Nav Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="desktopNavMenu">
+          <li>
+            <a href="index.html" class="nav-link" id="navFindWorkspace">
+              Find a Workspace
+            </a>
+          </li>
+          <li>
+            <a href="expansion.html" class="nav-link active" id="navExpansion">
+              Expansion Opportunities
+            </a>
+          </li>
+          <li class="nav-dropdown-item" id="partnerDropdownItem">
+            <button class="nav-link nav-dropdown-btn" id="partnerDropdownBtn" type="button" aria-expanded="false" aria-haspopup="true">
+              <span>Partner With Us</span>
+              <svg class="chevron-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+
+            <!-- Partner With Us Dropdown Menu (Matches Screenshot) -->
+            <div class="partner-dropdown-menu" id="partnerDropdownMenu">
+              <a href="workspace-providers.html" class="partner-menu-link" id="linkProviders">
+                <div class="partner-item-title">For Workspace Providers</div>
+                <div class="partner-item-sub">List &amp; manage your workspace inventory</div>
+              </a>
+              <a href="building-owners.html" class="partner-menu-link" id="linkOwners">
+                <div class="partner-item-title">For Building Owners</div>
+                <div class="partner-item-sub">List your building for workspace operators</div>
+              </a>
+              <a href="developers.html" class="partner-menu-link" id="linkDevelopers">
+                <div class="partner-item-title">For Developers</div>
+                <div class="partner-item-sub">Showcase upcoming commercial projects</div>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right Nav Actions: Sign In, Get Started, Avatar & Mobile Hamburger -->
+      <div class="nav-actions">
+        <a href="login.html?redirectTo=%2Fexpansion" class="nav-signin-btn" id="btnHeaderSignIn" style="text-decoration:none; display:inline-flex; align-items:center;">
+          Sign In
+        </a>
+        <a href="register.html?redirectTo=%2Fexpansion" class="btn-get-started" id="btnHeaderGetStarted" style="text-decoration:none; display:inline-flex; align-items:center;">
+          Get Started
+        </a>
+        <button class="profile-avatar-btn open-auth-btn" id="btnHeaderAvatar" aria-label="User Profile">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer & Backdrop -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <div class="brand-logo-wrap">
+        <img src="assets/images/logo.png" alt="SpaceWorq Logo" style="height: 38px;" />
+        <div class="brand-text-block">
+          <div class="brand-name-main">SpaceWorq</div>
+          <div class="brand-tagline">You are in the right place</div>
+        </div>
+      </div>
+      <button class="modal-close-btn" id="closeDrawerBtn" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <ul class="drawer-nav-list">
+        <li>
+          <a href="index.html" class="drawer-link" id="drawerFindWorkspace">
+            <span>Find a Workspace</span>
+          </a>
+        </li>
+        <li>
+          <a href="expansion.html" class="drawer-link active" id="drawerExpansion">
+            <span>Expansion Opportunities</span>
+          </a>
+        </li>
+        <li class="drawer-dropdown-section">
+          <button class="drawer-accordion-btn" id="drawerPartnerBtn">
+            <span>Partner With Us</span>
+            <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="drawer-accordion-content" id="drawerPartnerContent">
+            <a href="workspace-providers.html" class="drawer-sublink">
+              <strong>For Workspace Providers</strong>
+              <small>List &amp; manage your workspace inventory</small>
+            </a>
+            <a href="building-owners.html" class="drawer-sublink">
+              <strong>For Building Owners</strong>
+              <small>List your building for workspace operators</small>
+            </a>
+            <a href="developers.html" class="drawer-sublink">
+              <strong>For Developers</strong>
+              <small>Showcase upcoming commercial projects</small>
+            </a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="drawer-actions">
+        <a href="register.html?redirectTo=%2Fexpansion" class="btn-get-started" style="width: 100%; justify-content: center; text-decoration:none; display:inline-flex;">
+          <span>Get Started</span>
+        </a>
+        <a href="login.html?redirectTo=%2Fexpansion" class="nav-signin-btn" style="width: 100%; justify-content: center; text-align: center; border: 1px solid var(--border-color); padding: 9px 0; text-decoration:none; display:inline-flex;">
+          <span>Sign In</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       Main Expansion Page Content (Matches Screenshot)
+       ========================================================================== -->
+  <main class="expansion-page-container">
+    <div class="container">
+      
+      <!-- Top Hero Card -->
+      <div class="exp-hero-card">
+        <div class="exp-kicker">NEW BUILDINGS &amp; OFFICE/COMMERCIAL</div>
+        <h1 class="exp-title">Grow your network with new locations</h1>
+        <p class="exp-copy">Discover new buildings and commercial spaces where SPACEWORQ can help you launch or expand your next centre.</p>
+      </div>
+
+      <!-- Controls Row: City Dropdown, Filter Chips, Search Input -->
+      <div class="exp-controls-row">
+        <div class="exp-filters-top">
+          <!-- City Dropdown -->
+          <div class="exp-city-dropdown-wrap">
+            <button class="exp-city-pill-btn" id="expCityPillBtn" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span id="expCityLabel">All Cities</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <ul class="exp-city-menu" id="expCityMenu">
+              <li class="exp-city-item active" data-city="all">All Cities</li>
+              <li class="exp-city-item" data-city="bengaluru">Bengaluru</li>
+              <li class="exp-city-item" data-city="mumbai">Mumbai</li>
+              <li class="exp-city-item" data-city="delhi">Delhi NCR</li>
+              <li class="exp-city-item" data-city="chennai">Chennai</li>
+              <li class="exp-city-item" data-city="hyderabad">Hyderabad</li>
+              <li class="exp-city-item" data-city="pune">Pune</li>
+            </ul>
+          </div>
+
+          <!-- Subtype Filter Chips (Matches Screenshot: Office/Commercial selected) -->
+          <div class="exp-chips-group">
+            <button class="exp-chip-btn" data-subtype="ALL" type="button">All</button>
+            <button class="exp-chip-btn" data-subtype="NEW_BUILDING" type="button">New Building</button>
+            <button class="exp-chip-btn active" data-subtype="OFFICE_COMMERCIAL" type="button">Office/Commercial</button>
+          </div>
+        </div>
+
+        <!-- Search Input -->
+        <div class="exp-search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="text" 
+            class="exp-search-input" 
+            id="expSearchInput" 
+            placeholder="Search by name, city, or area..." 
+          />
+        </div>
+      </div>
+
+      <!-- Results Count Header -->
+      <div class="exp-results-header">
+        <h2 class="exp-results-count" id="expResultsCount">0 Opportunities Found</h2>
+      </div>
+
+      <!-- Opportunities Container (Empty State shown in screenshot) -->
+      <div id="expResultsContainer">
+        <div class="exp-empty-state-box" id="expEmptyState">
+          <svg class="exp-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <p class="exp-empty-text">No expansion opportunities match your filters</p>
+        </div>
+      </div>
+
+      <!-- Bottom Feature Cards (2 Column Grid Matching Screenshot) -->
+      <div class="exp-features-grid">
+        <div class="exp-feature-card">
+          <svg class="exp-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <div>
+            <h3 class="exp-feature-title">Market Expansion</h3>
+            <p class="exp-feature-text">Prioritise high-potential neighbourhoods and scale faster with city-wise workspace intelligence.</p>
+          </div>
+        </div>
+
+        <div class="exp-feature-card">
+          <svg class="exp-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <div>
+            <h3 class="exp-feature-title">Supply Matchmaking</h3>
+            <p class="exp-feature-text">Connect operators with landlords, developers, and property teams that need managed workspace demand.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       Modals (Consultation & Sign In)
+       ========================================================================== -->
+  <!-- Consultation Modal -->
+  <div class="modal-overlay" id="consultationModal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">List Building or Expand Centre</h3>
+        <button class="modal-close-btn" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;">
+          Submit your property or operator expansion requirements to connect with SpaceWorq's nationwide enterprise network.
+        </p>
+        <form id="consultationForm">
+          <div class="form-group">
+            <label class="form-label" for="consultName">Contact Name</label>
+            <input type="text" class="form-control" id="consultName" placeholder="e.g. Ramesh Kulkarni" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="consultCompany">Organization / Developer Name</label>
+            <input type="text" class="form-control" id="consultCompany" placeholder="e.g. Prestige Commercials" required />
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="consultPhone">Contact Phone</label>
+              <input type="tel" class="form-control" id="consultPhone" placeholder="+91 98765 43210" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="consultCity">Primary City</label>
+              <select class="form-control" id="consultCity">
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi NCR">Delhi NCR</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Pune">Pune</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select class="form-control">
+              <option>Workspace Provider (Listing Inventory)</option>
+              <option>Building Owner (Leasing Floorplate)</option>
+              <option>Developer (Upcoming Commercial Project)</option>
+            </select>
+          </div>
+          <button type="submit" class="modal-submit-btn">Submit Expansion Request</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign In / OTP Modal -->
+  <div class="modal-overlay" id="authModal" role="dialog" aria-modal="true">
+    <div class="modal-content" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Sign in to SpaceWorq</h3>
+        <button class="modal-close-btn" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="authFormStep1">
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px;">
+            Sign in to manage commercial listings, expansion analytics, and bookings.
+          </p>
+          <div class="form-group">
+            <label class="form-label" for="authContactInput">Phone Number or Email</label>
+            <input type="text" class="form-control" id="authContactInput" placeholder="+91 98765 43210 or email" required />
+          </div>
+          <button type="submit" class="modal-submit-btn">Get Verification Code</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==========================================================================
+       Footer Bar
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-row">
+        <div class="footer-copyright">
+          <img src="assets/images/logo.png" alt="SpaceWorq" style="height: 28px;" />
+          <span>Copyright @ SpaceWorQ.Com</span>
+        </div>
+        <ul class="footer-nav">
+          <li><a href="index.html">About Us</a></li>
+          <li><a href="index.html" class="open-consultation-btn">Contact Us</a></li>
+          <li><a href="index.html">Privacy Policy</a></li>
+          <li><a href="index.html">Terms</a></li>
+          <li><a href="index.html">Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom-row">
+        <span>SpaceWorq v1.0.0 • Made in India 🇮🇳</span>
+        <div class="footer-badges">
+          <span>🔒 256-bit SSL encrypted</span>
+          <span>🛡️ PCI DSS compliant</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Instant Booking Button & Login Required Modal -->
+  <button class="floating-instant-book-btn" id="floatingInstantBookBtn" aria-label="Instant Booking" title="Instant Booking">
+    <svg class="instant-book-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+    </svg>
+    <span>Instant Booking</span>
+  </button>
+
+  <div class="modal-overlay auth-req-modal-overlay" id="authRequiredModal" role="dialog" aria-modal="true" aria-labelledby="authReqTitle">
+    <div class="auth-req-card">
+      <h3 class="auth-req-title" id="authReqTitle">Login Required</h3>
+      <p class="auth-req-sub">Please login or signup to continue.</p>
+      <div class="auth-req-actions">
+        <button type="button" class="btn-auth-cancel" id="btnAuthReqCancel">Cancel</button>
+        <a href="register.html?redirectTo=%2Fexpansion.html" class="btn-auth-signup" id="btnAuthReqSignup">Signup</a>
+        <a href="login.html?redirectTo=%2Fexpansion.html" class="btn-auth-login" id="btnAuthReqLogin">Login</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script>
+    // Expansion Page Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      let activeSubtype = 'OFFICE_COMMERCIAL'; // Default matching screenshot
+      let activeCity = 'all';
+      let searchQuery = '';
+
+      // Elements
+      const expCityPillBtn = document.getElementById('expCityPillBtn');
+      const expCityMenu = document.getElementById('expCityMenu');
+      const expCityLabel = document.getElementById('expCityLabel');
+      const expChipBtns = document.querySelectorAll('.exp-chip-btn');
+      const expSearchInput = document.getElementById('expSearchInput');
+      const expResultsCount = document.getElementById('expResultsCount');
+      const expResultsContainer = document.getElementById('expResultsContainer');
+      const toastContainer = document.getElementById('toastContainer');
+
+      // Sample Expansion Commercial Inventory
+      const expansionData = [
+        {
+          id: 'exp-1',
+          name: 'Brigade Tech Gardens - Floor 4',
+          city: 'bengaluru',
+          cityName: 'Bengaluru',
+          locality: 'Brookefield, Whitefield',
+          subtype: 'OFFICE_COMMERCIAL',
+          typeLabel: 'Commercial Floorplate',
+          area: '24,000 sq.ft.',
+          rate: '₹75 / sq.ft.',
+          status: 'Available Q2',
+          image: 'assets/images/space2.png'
+        },
+        {
+          id: 'exp-2',
+          name: 'One Horizon Commercial Tower',
+          city: 'delhi',
+          cityName: 'Delhi NCR',
+          locality: 'Golf Course Road, Gurgaon',
+          subtype: 'NEW_BUILDING',
+          typeLabel: 'Grade-A New Commercial Tower',
+          area: '45,000 sq.ft.',
+          rate: '₹140 / sq.ft.',
+          status: 'Handover Ready',
+          image: 'assets/images/space3.png'
+        },
+        {
+          id: 'exp-3',
+          name: 'Godrej One Prime Wing',
+          city: 'mumbai',
+          cityName: 'Mumbai',
+          locality: 'Vikhroli East, Eastern Express Hwy',
+          subtype: 'OFFICE_COMMERCIAL',
+          typeLabel: 'Managed Office Wing',
+          area: '18,500 sq.ft.',
+          rate: '₹125 / sq.ft.',
+          status: 'Available Now',
+          image: 'assets/images/space1.png'
+        }
+      ];
+
+      function showToast(msg) {
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = `<span>${msg}</span>`;
+        toastContainer.appendChild(toast);
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          setTimeout(() => toast.remove(), 300);
+        }, 3000);
+      }
+
+      // City Dropdown Toggle
+      if (expCityPillBtn) {
+        expCityPillBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          expCityMenu.classList.toggle('open');
+        });
+      }
+
+      document.querySelectorAll('.exp-city-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+          const city = e.currentTarget.dataset.city;
+          const text = e.currentTarget.textContent;
+          activeCity = city;
+          expCityLabel.textContent = text;
+          document.querySelectorAll('.exp-city-item').forEach(i => i.classList.remove('active'));
+          e.currentTarget.classList.add('active');
+          expCityMenu.classList.remove('open');
+          renderExpansionOpportunities();
+        });
+      });
+
+      // Filter Chips Toggle
+      expChipBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          expChipBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeSubtype = btn.dataset.subtype;
+          renderExpansionOpportunities();
+        });
+      });
+
+      // Search Input
+      if (expSearchInput) {
+        expSearchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value.trim().toLowerCase();
+          renderExpansionOpportunities();
+        });
+      }
+
+      // Render Logic
+      function renderExpansionOpportunities() {
+        let list = [...expansionData];
+
+        if (activeSubtype !== 'ALL') {
+          list = list.filter(item => item.subtype === activeSubtype);
+        }
+
+        if (activeCity !== 'all') {
+          list = list.filter(item => item.city === activeCity);
+        }
+
+        if (searchQuery) {
+          list = list.filter(item => 
+            item.name.toLowerCase().includes(searchQuery) ||
+            item.locality.toLowerCase().includes(searchQuery) ||
+            item.cityName.toLowerCase().includes(searchQuery)
+          );
+        }
+
+        // In the screenshot, Office/Commercial yields "0 Opportunities Found"
+        // Let's accurately display the results count:
+        expResultsCount.textContent = `${list.length} Opportunities Found`;
+
+        if (list.length === 0) {
+          expResultsContainer.innerHTML = `
+            <div class="exp-empty-state-box" id="expEmptyState">
+              <svg class="exp-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <p class="exp-empty-text">No expansion opportunities match your filters</p>
+            </div>
+          `;
+        } else {
+          expResultsContainer.innerHTML = `
+            <div class="exp-cards-grid">
+              ${list.map(item => `
+                <div class="workspace-card">
+                  <div class="workspace-image-container">
+                    <img src="${item.image}" alt="${item.name}" />
+                    <div class="card-top-badges">
+                      <span class="badge-verified">Verified Building</span>
+                      <span class="badge-availability available">${item.status}</span>
+                    </div>
+                  </div>
+                  <div class="workspace-card-body">
+                    <span class="card-type-label">${item.typeLabel}</span>
+                    <h3 class="card-title">${item.name}</h3>
+                    <div class="card-location">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                      <span>${item.locality} • ${item.cityName}</span>
+                    </div>
+                    <div class="card-footer-row" style="margin-top:auto;">
+                      <div class="card-price-wrap">
+                        <span class="price-val">${item.rate}</span>
+                        <span class="price-sub">${item.area}</span>
+                      </div>
+                      <button class="btn-primary open-consultation-btn" style="padding: 7px 16px; font-size: 0.84rem;">Enquire</button>
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+          attachCardEvents();
+        }
+      }
+
+      function attachCardEvents() {
+        document.querySelectorAll('.open-consultation-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const modal = document.getElementById('consultationModal');
+            if (modal) modal.classList.add('open');
+          });
+        });
+      }
+
+      // Partner With Us dropdown & Header Toggles
+      const partnerDropdownItem = document.getElementById('partnerDropdownItem');
+      const partnerDropdownBtn = document.getElementById('partnerDropdownBtn');
+      const partnerDropdownMenu = document.getElementById('partnerDropdownMenu');
+
+      if (partnerDropdownBtn && partnerDropdownItem) {
+        partnerDropdownBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = partnerDropdownMenu.classList.contains('open');
+          partnerDropdownMenu.classList.toggle('open', !isOpen);
+          partnerDropdownItem.classList.toggle('open', !isOpen);
+        });
+      }
+
+      document.addEventListener('click', () => {
+        if (partnerDropdownMenu) partnerDropdownMenu.classList.remove('open');
+        if (partnerDropdownItem) partnerDropdownItem.classList.remove('open');
+        if (expCityMenu) expCityMenu.classList.remove('open');
+      });
+
+      // Mobile Hamburger
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+      const drawerBackdrop = document.getElementById('drawerBackdrop');
+      const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+
+      if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', () => {
+          mobileDrawer.classList.add('open');
+          drawerBackdrop.classList.add('open');
+        });
+      }
+      if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', () => {
+        mobileDrawer.classList.remove('open');
+        drawerBackdrop.classList.remove('open');
+      });
+      if (drawerBackdrop) drawerBackdrop.addEventListener('click', () => {
+        mobileDrawer.classList.remove('open');
+        drawerBackdrop.classList.remove('open');
+      });
+
+      // Drawer Accordion Toggle
+      const drawerPartnerBtn = document.getElementById('drawerPartnerBtn');
+      if (drawerPartnerBtn) {
+        drawerPartnerBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const parentSec = drawerPartnerBtn.closest('.drawer-dropdown-section');
+          if (parentSec) {
+            parentSec.classList.toggle('open');
+          }
+        });
+      }
+
+      // Modals
+      const consultationModal = document.getElementById('consultationModal');
+      const authModal = document.getElementById('authModal');
+      
+      document.querySelectorAll('.open-consultation-btn').forEach(b => {
+        b.addEventListener('click', () => consultationModal.classList.add('open'));
+      });
+      document.querySelectorAll('.open-auth-btn').forEach(b => {
+        b.addEventListener('click', () => authModal.classList.add('open'));
+      });
+      document.querySelectorAll('.modal-overlay').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) modal.classList.remove('open');
+        });
+        const closeBtn = modal.querySelector('.modal-close-btn');
+        if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+      });
+
+      // Floating Instant Booking & Login Required Modal
+      const floatingInstantBookBtn = document.getElementById('floatingInstantBookBtn');
+      const authRequiredModal = document.getElementById('authRequiredModal');
+      const btnAuthReqCancel = document.getElementById('btnAuthReqCancel');
+      if (floatingInstantBookBtn && authRequiredModal) {
+        floatingInstantBookBtn.addEventListener('click', () => {
+          const savedUser = localStorage.getItem('spaceworq_user') || sessionStorage.getItem('spaceworq_logged_in');
+          if (savedUser) {
+            window.location.href = 'index.html#workspacesSection';
+          } else {
+            authRequiredModal.classList.add('open');
+          }
+        });
+      }
+      if (btnAuthReqCancel && authRequiredModal) {
+        btnAuthReqCancel.addEventListener('click', () => {
+          authRequiredModal.classList.remove('open');
+        });
+      }
+
+      const consultationForm = document.getElementById('consultationForm');
+      if (consultationForm) {
+        consultationForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          consultationModal.classList.remove('open');
+          showToast('Inquiry submitted! Our expansion manager will connect with you.');
+          consultationForm.reset();
+        });
+      }
+
+      // Initial Render matching the screenshot:
+      // In the screenshot, Office/Commercial filter with no active search shows 0 opportunities
+      // If user clicks "All", they can see all available listings!
+      expResultsCount.textContent = '0 Opportunities Found';
+      expResultsContainer.innerHTML = `
+        <div class="exp-empty-state-box" id="expEmptyState">
+          <svg class="exp-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <p class="exp-empty-text">No expansion opportunities match your filters</p>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

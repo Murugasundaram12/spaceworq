@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpaceWorq - For Workspace Providers | List & Manage Inventory</title>
+  <meta name="description" content="List and manage your workspace inventory on SpaceWorq. Publish every centre, keep pricing and availability current, and reach enterprise members searching in your micro-market." />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/images/logo.png" />
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <style>
+    body.provider-page-body {
+      background-color: #EDF6F9;
+    }
+
+    .provider-container {
+      padding: 32px 0 60px 0;
+    }
+
+    .provider-cover-banner {
+      position: relative;
+      min-height: 240px;
+      border-radius: 20px;
+      overflow: hidden;
+      background-color: #0B3320;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .provider-cover-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .provider-cover-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(4, 24, 15, 0.3) 0%, rgba(4, 24, 15, 0.82) 100%);
+    }
+
+    .provider-cover-content {
+      position: relative;
+      z-index: 2;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px 32px;
+    }
+
+    .provider-cover-kicker {
+      color: #BCE7C9;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .provider-cover-title {
+      color: #FFFFFF;
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.25;
+      max-width: 680px;
+    }
+
+    .provider-hero-card {
+      border-radius: 20px;
+      padding: 36px 40px;
+      border: 1px solid rgba(0, 108, 118, 0.22);
+      background: rgba(0, 108, 118, 0.06);
+      margin-bottom: 36px;
+    }
+
+    .provider-hero-kicker {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .provider-hero-title {
+      font-size: 2.15rem;
+      font-weight: 800;
+      color: var(--text-heading);
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .provider-hero-copy {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .provider-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-start-listing {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      background-color: var(--primary);
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 14px rgba(0, 108, 118, 0.3);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-start-listing:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-find-centre {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 26px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      background-color: #FFFFFF;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-find-centre:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .provider-section-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text-heading);
+      margin-bottom: 20px;
+    }
+
+    .provider-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .provider-step-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .provider-step-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .provider-step-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .provider-step-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 8px;
+    }
+
+    .provider-step-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .provider-highlights-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 28px 32px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .highlight-item svg {
+      width: 20px;
+      height: 20px;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .highlight-item span {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    @media (max-width: 900px) {
+      .provider-steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .provider-cover-title {
+        font-size: 1.45rem;
+      }
+      .provider-hero-title {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body class="provider-page-body">
+
+  <!-- Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <a href="../index.html" class="brand-logo-wrap" id="brandLogo">
+        <img src="../assets/images/logo.png" alt="SpaceWorq" class="brand-logo-img" />
+        <div class="brand-text-block">
+          <div class="brand-name-main">SpaceWorq</div>
+          <div class="brand-tagline">You are in the right place</div>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="desktopNavMenu">
+          <li>
+            <a href="../index.html" class="nav-link" id="navFindWorkspace">
+              Find a Workspace
+            </a>
+          </li>
+          <li>
+            <a href="../expansion.html" class="nav-link" id="navExpansion">
+              Expansion Opportunities
+            </a>
+          </li>
+          <li class="nav-dropdown-item open" id="partnerDropdownItem">
+            <button class="nav-link nav-dropdown-btn active" id="partnerDropdownBtn" type="button" aria-expanded="true">
+              <span>Partner With Us</span>
+              <svg class="chevron-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+
+            <div class="partner-dropdown-menu" id="partnerDropdownMenu">
+              <a href="workspace-providers.html" class="partner-menu-link active-page" style="background:#F0FBFE; border-left: 3px solid var(--primary);">
+                <div class="partner-item-title" style="color:var(--primary);">For Workspace Providers</div>
+                <div class="partner-item-sub">List &amp; manage your workspace inventory</div>
+              </a>
+              <a href="building-owners.html" class="partner-menu-link">
+                <div class="partner-item-title">For Building Owners</div>
+                <div class="partner-item-sub">List your building for workspace operators</div>
+              </a>
+              <a href="developers.html" class="partner-menu-link">
+                <div class="partner-item-title">For Developers</div>
+                <div class="partner-item-sub">Showcase upcoming commercial projects</div>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="nav-signin-btn open-auth-btn" id="btnHeaderSignIn">
+          Sign In
+        </button>
+        <button class="btn-get-started open-listing-modal-btn" id="btnHeaderGetStarted">
+          Get Started
+        </button>
+        <button class="profile-avatar-btn open-auth-btn" id="btnHeaderAvatar" aria-label="User Profile">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </button>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer & Backdrop -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <div class="brand-logo-wrap">
+        <img src="../assets/images/logo.png" alt="SpaceWorq Logo" style="height: 38px;" />
+        <div class="brand-text-block">
+          <div class="brand-name-main">SpaceWorq</div>
+          <div class="brand-tagline">You are in the right place</div>
+        </div>
+      </div>
+      <button class="modal-close-btn" id="closeDrawerBtn" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <ul class="drawer-nav-list">
+        <li><a href="../index.html" class="drawer-link"><span>Find a Workspace</span></a></li>
+        <li><a href="../expansion.html" class="drawer-link"><span>Expansion Opportunities</span></a></li>
+        <li class="drawer-dropdown-section open">
+          <button class="drawer-accordion-btn" id="drawerPartnerBtn">
+            <span>Partner With Us</span>
+            <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="drawer-accordion-content" id="drawerPartnerContent">
+            <a href="workspace-providers.html" class="drawer-sublink" style="background:#E2F1F0; border-left: 3px solid var(--primary);">
+              <strong style="color:var(--primary);">For Workspace Providers</strong>
+              <small>List &amp; manage your workspace inventory</small>
+            </a>
+            <a href="building-owners.html" class="drawer-sublink">
+              <strong>For Building Owners</strong>
+              <small>List your building for workspace operators</small>
+            </a>
+            <a href="developers.html" class="drawer-sublink">
+              <strong>For Developers</strong>
+              <small>Showcase upcoming commercial projects</small>
+            </a>
+          </div>
+        </li>
+      </ul>
+      <div class="drawer-actions">
+        <button class="btn-get-started open-listing-modal-btn" style="width: 100%; justify-content: center;"><span>Start Listing</span></button>
+        <button class="nav-signin-btn open-auth-btn" style="width: 100%; justify-content: center; text-align: center; border: 1px solid var(--border-color); padding: 9px 0;"><span>Sign In</span></button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="provider-container">
+    <div class="container">
+      
+      <!-- Top Cover Image Section -->
+      <section class="provider-cover-banner">
+        <img src="../assets/images/space2.png" alt="Built for operators" class="provider-cover-img" />
+        <div class="provider-cover-overlay"></div>
+        <div class="provider-cover-content">
+          <div class="provider-cover-kicker">Built for operators</div>
+          <h1 class="provider-cover-title">Keep every centre visible, current, and ready for demand.</h1>
+        </div>
+      </section>
+
+      <!-- Hero Card Box -->
+      <section class="provider-hero-card">
+        <div class="provider-hero-kicker">Workspace Partners</div>
+        <h2 class="provider-hero-title">List &amp; manage your workspace inventory</h2>
+        <p class="provider-hero-copy">Publish every centre you operate, keep pricing and availability current, and get in front of members searching in your micro-market.</p>
+        
+        <div class="provider-cta-row">
+          <button class="btn-start-listing open-listing-modal-btn" type="button">
+            <span>Start listing</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+          <a href="../expansion.html" class="btn-find-centre">
+            <span>Find your next centre</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- How Listing Works -->
+      <section style="margin-bottom: 40px;">
+        <h2 class="provider-section-title">How listing works</h2>
+        <div class="provider-steps-grid">
+          <div class="provider-step-card">
+            <div class="provider-step-num">01</div>
+            <h3 class="provider-step-title">Create your partner account</h3>
+            <p class="provider-step-text">Sign up as a workspace partner - it takes under two minutes.</p>
+          </div>
+          <div class="provider-step-card">
+            <div class="provider-step-num">02</div>
+            <h3 class="provider-step-title">Add your inventory</h3>
+            <p class="provider-step-text">Publish each centre with photos, seat counts, amenities, and pricing.</p>
+          </div>
+          <div class="provider-step-card">
+            <div class="provider-step-num">03</div>
+            <h3 class="provider-step-title">Manage and grow</h3>
+            <p class="provider-step-text">Edit pricing, pause listings, and track enquiries from your dashboard.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Everything in One Dashboard Highlights -->
+      <section>
+        <h2 class="provider-section-title">Everything in one dashboard</h2>
+        <div class="provider-highlights-card">
+          <div class="highlight-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <span>Publish unlimited centres and space types</span>
+          </div>
+          <div class="highlight-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <span>Set pricing, seat counts, and amenities</span>
+          </div>
+          <div class="highlight-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <span>Save drafts and publish when you're ready</span>
+          </div>
+          <div class="highlight-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <span>Edit or remove any listing instantly</span>
+          </div>
+          <div class="highlight-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <span>Zero listing fee - you keep your margin</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Partner Listing Modal -->
+  <div class="modal-overlay" id="partnerModal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Partner Onboarding</h3>
+        <button class="modal-close-btn" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;">
+          Join 500+ operators publishing centres across India. Our partner relations team will approve your inventory in under 24 hours.
+        </p>
+        <form id="partnerListingForm">
+          <div class="form-group">
+            <label class="form-label" for="centreName">Centre / Brand Name</label>
+            <input type="text" class="form-control" id="centreName" placeholder="e.g. Hive Coworking Koramangala" required />
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="providerCity">City</label>
+              <select class="form-control" id="providerCity">
+                <option value="Bengaluru">Bengaluru</option><option value="Mumbai">Mumbai</option><option value="Delhi NCR">Delhi NCR</option><option value="Chennai">Chennai</option><option value="Hyderabad">Hyderabad</option><option value="Pune">Pune</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="locality">Micro-Market / Area</label>
+              <input type="text" class="form-control" id="locality" placeholder="e.g. HSR Layout, Sector 4" required />
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="totalDesks">Total Capacity (Desks)</label>
+              <input type="number" class="form-control" id="totalDesks" placeholder="e.g. 150" min="5" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="deskPrice">Starting Desk Price (₹/mo)</label>
+              <input type="number" class="form-control" id="deskPrice" placeholder="e.g. 7500" required />
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="contactPerson">Contact Person</label>
+              <input type="text" class="form-control" id="contactPerson" placeholder="Full Name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contactPhone">Phone Number</label>
+              <input type="tel" class="form-control" id="contactPhone" placeholder="+91 98765 43210" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contactEmail">Business Email</label>
+            <input type="email" class="form-control" id="contactEmail" placeholder="partner@yourbrand.com" required />
+          </div>
+          <button type="submit" class="modal-submit-btn">Submit Partner Listing</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign In Modal -->
+  <div class="modal-overlay" id="authModal" role="dialog" aria-modal="true">
+    <div class="modal-content" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Sign in to SpaceWorq</h3>
+        <button class="modal-close-btn" aria-label="Close modal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+      <div class="modal-body">
+        <form id="authForm">
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px;">Sign in to access your partner dashboard, update pricing, and manage leads.</p>
+          <div class="form-group">
+            <label class="form-label" for="authContact">Partner Email or Mobile</label>
+            <input type="text" class="form-control" id="authContact" placeholder="operator@brand.com" required />
+          </div>
+          <button type="submit" class="modal-submit-btn">Get Verification Code</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-row">
+        <div class="footer-copyright">
+          <img src="../assets/images/logo.png" alt="SpaceWorq" style="height: 28px;" />
+          <span>Copyright @ SpaceWorQ.Com</span>
+        </div>
+        <ul class="footer-nav">
+          <li><a href="../index.html">About Us</a></li>
+          <li><a href="../index.html">Contact Us</a></li>
+          <li><a href="../index.html">Privacy Policy</a></li>
+          <li><a href="../index.html">Terms</a></li>
+          <li><a href="../index.html">Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom-row">
+        <span>SpaceWorq v1.0.0 • Made in India 🇮🇳</span>
+        <div class="footer-badges">
+          <span>🔒 256-bit SSL encrypted</span>
+          <span>🛡️ PCI DSS compliant</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Instant Booking Button & Login Required Modal -->
+  <button class="floating-instant-book-btn" id="floatingInstantBookBtn" aria-label="Instant Booking" title="Instant Booking">
+    <svg class="instant-book-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+    </svg>
+    <span>Instant Booking</span>
+  </button>
+
+  <div class="modal-overlay auth-req-modal-overlay" id="authRequiredModal" role="dialog" aria-modal="true" aria-labelledby="authReqTitle">
+    <div class="auth-req-card">
+      <h3 class="auth-req-title" id="authReqTitle">Login Required</h3>
+      <p class="auth-req-sub">Please login or signup to continue.</p>
+      <div class="auth-req-actions">
+        <button type="button" class="btn-auth-cancel" id="btnAuthReqCancel">Cancel</button>
+        <a href="../register.html?redirectTo=%2Fpartner%2Fworkspace-providers" class="btn-auth-signup" id="btnAuthReqSignup">Signup</a>
+        <a href="../login.html?redirectTo=%2Fpartner%2Fworkspace-providers" class="btn-auth-login" id="btnAuthReqLogin">Login</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toastContainer = document.getElementById('toastContainer');
+      function showToast(msg) {
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = `<span>${msg}</span>`;
+        toastContainer.appendChild(toast);
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          setTimeout(() => toast.remove(), 300);
+        }, 3200);
+      }
+
+      const partnerDropdownItem = document.getElementById('partnerDropdownItem');
+      const partnerDropdownBtn = document.getElementById('partnerDropdownBtn');
+      const partnerDropdownMenu = document.getElementById('partnerDropdownMenu');
+
+      if (partnerDropdownBtn) {
+        partnerDropdownBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = partnerDropdownMenu.classList.contains('open');
+          partnerDropdownMenu.classList.toggle('open', !isOpen);
+          partnerDropdownItem.classList.toggle('open', !isOpen);
+        });
+      }
+
+      document.addEventListener('click', () => {
+        if (partnerDropdownMenu) partnerDropdownMenu.classList.remove('open');
+        if (partnerDropdownItem) partnerDropdownItem.classList.remove('open');
+      });
+
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+      const drawerBackdrop = document.getElementById('drawerBackdrop');
+      const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+
+      if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', () => {
+          mobileDrawer.classList.add('open');
+          drawerBackdrop.classList.add('open');
+        });
+      }
+      if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', () => {
+        mobileDrawer.classList.remove('open');
+        drawerBackdrop.classList.remove('open');
+      });
+      if (drawerBackdrop) drawerBackdrop.addEventListener('click', () => {
+        mobileDrawer.classList.remove('open');
+        drawerBackdrop.classList.remove('open');
+      });
+
+      // Drawer Accordion Toggle
+      const drawerPartnerBtn = document.getElementById('drawerPartnerBtn');
+      if (drawerPartnerBtn) {
+        drawerPartnerBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const parentSec = drawerPartnerBtn.closest('.drawer-dropdown-section');
+          if (parentSec) {
+            parentSec.classList.toggle('open');
+          }
+        });
+      }
+
+      const partnerModal = document.getElementById('partnerModal');
+      const authModal = document.getElementById('authModal');
+
+      document.querySelectorAll('.open-listing-modal-btn, .open-partner-modal-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          partnerModal.classList.add('open');
+        });
+      });
+
+      document.querySelectorAll('.open-auth-btn').forEach(btn => {
+        btn.addEventListener('click', () => authModal.classList.add('open'));
+      });
+
+      document.querySelectorAll('.modal-overlay').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) modal.classList.remove('open');
+        });
+        const closeBtn = modal.querySelector('.modal-close-btn');
+        if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+      });
+
+      // Floating Instant Booking & Login Required Modal
+      const floatingInstantBookBtn = document.getElementById('floatingInstantBookBtn');
+      const authRequiredModal = document.getElementById('authRequiredModal');
+      const btnAuthReqCancel = document.getElementById('btnAuthReqCancel');
+      if (floatingInstantBookBtn && authRequiredModal) {
+        floatingInstantBookBtn.addEventListener('click', () => {
+          const savedUser = localStorage.getItem('spaceworq_user') || sessionStorage.getItem('spaceworq_logged_in');
+          if (savedUser) {
+            window.location.href = '../index.html#workspacesSection';
+          } else {
+            authRequiredModal.classList.add('open');
+          }
+        });
+      }
+      if (btnAuthReqCancel && authRequiredModal) {
+        btnAuthReqCancel.addEventListener('click', () => {
+          authRequiredModal.classList.remove('open');
+        });
+      }
+
+      const partnerListingForm = document.getElementById('partnerListingForm');
+      if (partnerListingForm) {
+        partnerListingForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          partnerModal.classList.remove('open');
+          showToast('Partner registration submitted! Our team will contact you within 24 hours to publish your centre.');
+          partnerListingForm.reset();
+        });
+      }
+
+      const authForm = document.getElementById('authForm');
+      if (authForm) {
+        authForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          authModal.classList.remove('open');
+          showToast('Verification code sent to your partner contact!');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpaceWorq - For Building Owners | List Commercial Space for Operators</title>
+  <meta name="description" content="Put your commercial floors in front of coworking operators planning their next centre. No broker chain, no listing fee. Choose between straight lease, revenue share, or management contract." />
+  <meta name="keywords" content="building owners, list commercial property, lease office space, coworking operators, commercial real estate, SpaceWorq" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="SpaceWorq - For Building Owners" />
+  <meta property="og:description" content="Put your commercial floors in front of coworking operators planning their next centre - no broker chain, no listing fee." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.spaceworq.com/partner/building-owners" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    /* Specific styles for Building Owners Page (Exact SpaceWorq Production Design) */
+    body.owner-page-body {
+      background-color: #EDF6F9;
+    }
+
+    .owner-container {
+      padding: 32px 0 60px 0;
+    }
+
+    /* Main Hero Action Card (Matches bundle heroCard) */
+    .owner-hero-card {
+      border-radius: 20px;
+      padding: 36px 40px;
+      border: 1px solid rgba(0, 108, 118, 0.22);
+      background: rgba(0, 108, 118, 0.06);
+      margin-bottom: 36px;
+    }
+
+    .owner-hero-kicker {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .owner-hero-title {
+      font-size: 2.15rem;
+      font-weight: 800;
+      color: var(--text-heading);
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .owner-hero-copy {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .owner-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-submit-building {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      background-color: var(--primary);
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 14px rgba(0, 108, 118, 0.3);
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
+
+    .btn-submit-building:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(0, 108, 118, 0.4);
+    }
+
+    .btn-explore-expansion {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 26px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      background-color: #FFFFFF;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-explore-expansion:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Section Title */
+    .owner-section-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text-heading);
+      margin-bottom: 20px;
+    }
+
+    /* Choose a Partnership Model (3 Cards Grid) */
+    .owner-models-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .owner-model-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .owner-model-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .model-icon-box {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(0, 108, 118, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .model-icon-box svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .owner-model-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 8px;
+    }
+
+    .owner-model-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* What We Need From You Section (Matches Bundle requirementsSection) */
+    .requirements-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      min-height: 380px;
+      margin-bottom: 40px;
+    }
+
+    .requirements-copy {
+      flex: 1.2;
+      padding: 36px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .requirements-title {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--text-heading);
+      line-height: 1.25;
+    }
+
+    .requirements-list {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .requirement-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .requirement-item svg {
+      width: 17px;
+      height: 17px;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .requirement-item span {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-heading);
+      line-height: 1.45;
+    }
+
+    .requirements-btn {
+      align-self: flex-start;
+      margin-top: 6px;
+    }
+
+    .requirements-image-wrap {
+      flex: 0.9;
+      position: relative;
+      min-height: 360px;
+      background-color: #DDE7E0;
+    }
+
+    .requirements-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .owner-models-grid {
+        grid-template-columns: 1fr;
+      }
+      .requirements-box {
+        flex-direction: column-reverse;
+      }
+      .requirements-image-wrap {
+        height: 230px;
+        min-height: 230px;
+        position: relative;
+      }
+      .requirements-copy {
+        padding: 28px 24px;
+      }
+      .owner-hero-card {
+        padding: 28px 24px;
+      }
+      .owner-hero-title {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+</head>
+<body class="owner-page-body">
+
+  <!-- ==========================================================================
+       Header & Navigation (Exact SpaceWorq Design)
+       ========================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <!-- Logo + Tagline -->
+      <a href="index.html" class="brand-logo-wrap" id="brandLogo">
+        <img src="assets/images/logo.png" alt="SpaceWorq" class="brand-logo-img" />
+        <div class="brand-text-block">
+          <div class="brand-name-main">SpaceWorq</div>
+          <div class="brand-tagline">You are in the right place</div>
+        </div>
+      </a>
+
+      <!-- Center Desktop Nav Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="desktopNavMenu">
+          <li>
+            <a href="index.html" class="nav-link" id="navFindWorkspace">
+              Find a Workspace
+            </a>
+          </li>
+          <li>
+            <a href="expansion.html" class="nav-link" id="navExpansion">
+              Expansion Opportunities
+            </a>
+          </li>
+          <li class="nav-dropdown-item open" id="partnerDropdownItem">
+            <button class="nav-link nav-dropdown-btn active" id="partnerDropdownBtn" type="button" aria-expanded="true">
+              <span>Partner With Us</span>
+              <svg class="chevron-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div class="partner-dropdown-menu" id="partnerDropdownMenu">
+              <a href="workspace-providers.html" class="partner-menu-link">
+                <div class="partner-item-title">For Workspace Providers</div>
+                <div class="partner-item-sub">List &amp; manage your workspace inventory</div>
+              </a>
+              <a href="building-owners.html" class="partner-menu-link active-page" style="background:#F0FBFE; border-left: 3px solid var(--primary);">
+                <div class="partner-item-title" style="color:var(--primary);">For Building Owners</div>
+                <div class="partner-item-sub">List your building for workspace operators</div>
+              </a>
+              <a href="developers.html" class="partner-menu-link">
+                <div class="partner-item-title">For Developers</div>
+                <div class="partner-item-sub">Showcase upcoming commercial projects</div>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right Nav Actions -->
+      <div class="nav-actions">
+        <a href="login.html?redirectTo=%2Fpartner%2Fbuilding-owners" class="nav-signin-btn" id="btnHeaderSignIn" style="text-decoration:none; display:inline-flex; align-items:center;">
+          Sign In
+        </a>
+        <button class="btn-get-started open-submit-modal-btn" id="btnHeaderGetStarted">
+          Submit Space
+        </button>
+        <button class="profile-avatar-btn open-auth-btn" id="btnHeaderAvatar" aria-label="User Profile">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer & Backdrop -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <div class="brand-logo-wrap">
+        <img src="assets/images/logo.png" alt="SpaceWorq Logo" style="height: 38px;" />
+        <div class="brand-text-block">
+          <div class="brand-name-main">SpaceWorq</div>
+          <div class="brand-tagline">You are in the right place</div>
+        </div>
+      </div>
+      <button class="modal-close-btn" id="closeDrawerBtn" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <ul class="drawer-nav-list">
+        <li>
+          <a href="index.html" class="drawer-link">
+            <span>Find a Workspace</span>
+          </a>
+        </li>
+        <li>
+          <a href="expansion.html" class="drawer-link">
+            <span>Expansion Opportunities</span>
+          </a>
+        </li>
+        <li class="drawer-dropdown-section open">
+          <button class="drawer-accordion-btn" id="drawerPartnerBtn">
+            <span>Partner With Us</span>
+            <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="drawer-accordion-content" id="drawerPartnerContent">
+            <a href="workspace-providers.html" class="drawer-sublink">
+              <strong>For Workspace Providers</strong>
+              <small>List &amp; manage your workspace inventory</small>
+            </a>
+            <a href="building-owners.html" class="drawer-sublink" style="background:#E2F1F0; border-left: 3px solid var(--primary);">
+              <strong style="color:var(--primary);">For Building Owners</strong>
+              <small>List your building for workspace operators</small>
+            </a>
+            <a href="developers.html" class="drawer-sublink">
+              <strong>For Developers</strong>
+              <small>Showcase upcoming commercial projects</small>
+            </a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="drawer-actions">
+        <button class="btn-get-started open-submit-modal-btn" style="width: 100%; justify-content: center;">
+          <span>Submit Building</span>
+        </button>
+        <a href="login.html?redirectTo=%2Fpartner%2Fbuilding-owners" class="nav-signin-btn" style="width: 100%; justify-content: center; text-align: center; border: 1px solid var(--border-color); padding: 9px 0; text-decoration:none; display:inline-flex;">
+          <span>Sign In</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       Main Building Owners Content (Matches Production Component module 1378)
+       ========================================================================== -->
+  <main class="owner-container">
+    <div class="container">
+      
+      <!-- Hero Card Box -->
+      <section class="owner-hero-card">
+        <div class="owner-hero-kicker">Building Owners</div>
+        <h1 class="owner-hero-title">List your building for workspace operators</h1>
+        <p class="owner-hero-copy">Put your commercial floors in front of coworking operators planning their next centre - no broker chain, no listing fee.</p>
+        
+        <div class="owner-cta-row">
+          <button class="btn-submit-building open-submit-modal-btn" type="button">
+            <span>Submit your building</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+          <a href="expansion.html" class="btn-explore-expansion">
+            <span>Explore expansion demand</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Choose a Partnership Model -->
+      <section style="margin-bottom: 40px;">
+        <h2 class="owner-section-title">Choose a partnership model</h2>
+        <div class="owner-models-grid">
+          
+          <!-- Model 1: Straight Lease -->
+          <div class="owner-model-card">
+            <div class="model-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <h3 class="owner-model-title">Straight lease</h3>
+            <p class="owner-model-text">Traditional lease to a vetted operator with a security deposit and lock-in.</p>
+          </div>
+
+          <!-- Model 2: Revenue Share -->
+          <div class="owner-model-card">
+            <div class="model-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="19" y1="5" x2="5" y2="19"></line>
+                <circle cx="6.5" cy="6.5" r="2.5"></circle>
+                <circle cx="17.5" cy="17.5" r="2.5"></circle>
+              </svg>
+            </div>
+            <h3 class="owner-model-title">Revenue share</h3>
+            <p class="owner-model-text">Share the upside - a base rent plus a percentage of centre revenue.</p>
+          </div>
+
+          <!-- Model 3: Management Contract -->
+          <div class="owner-model-card">
+            <div class="model-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+              </svg>
+            </div>
+            <h3 class="owner-model-title">Management contract</h3>
+            <p class="owner-model-text">Retain the asset while an operator runs the centre for a fee.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- What We Need From You Section -->
+      <section>
+        <div class="requirements-box">
+          <div class="requirements-copy">
+            <h2 class="requirements-title">What we need from you</h2>
+            <div class="requirements-list">
+              <div class="requirement-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+                <span>Building name, city and locality</span>
+              </div>
+              <div class="requirement-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+                <span>Total area and typical floor plate</span>
+              </div>
+              <div class="requirement-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+                <span>Expected rent per sq.ft. and availability date</span>
+              </div>
+              <div class="requirement-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+                <span>Building grade and key amenities</span>
+              </div>
+              <div class="requirement-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+                <span>Photos of the facade and available floors</span>
+              </div>
+            </div>
+
+            <button class="btn-submit-building requirements-btn open-submit-modal-btn" type="button">
+              <span>Submit building / commercial space</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <div class="requirements-image-wrap">
+            <img src="assets/images/space3.png" alt="Commercial Building for Operators" class="requirements-image" />
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       Submit Building / Commercial Space Modal
+       ========================================================================== -->
+  <div class="modal-overlay" id="buildingModal" role="dialog" aria-modal="true">
+    <div class="modal-content" style="max-width: 580px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Submit Commercial Building</h3>
+        <button class="modal-close-btn" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;">
+          Connect directly with top coworking brands &amp; managed operators looking to expand into your micro-market.
+        </p>
+        <form id="buildingSubmitForm">
+          <div class="form-group">
+            <label class="form-label" for="bldgName">Building / Property Name</label>
+            <input type="text" class="form-control" id="bldgName" placeholder="e.g. Prestige Tech Park - Block C" required />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="bldgCity">City</label>
+              <select class="form-control" id="bldgCity">
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi NCR">Delhi NCR / Gurgaon</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Pune">Pune</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="bldgLocality">Micro-Market / Locality</label>
+              <input type="text" class="form-control" id="bldgLocality" placeholder="e.g. Outer Ring Road, Kadubeesanahalli" required />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="bldgArea">Total Available Area (sq.ft.)</label>
+              <input type="number" class="form-control" id="bldgArea" placeholder="e.g. 35,000" min="2000" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="bldgFloorPlate">Floor Plate (sq.ft.)</label>
+              <input type="number" class="form-control" id="bldgFloorPlate" placeholder="e.g. 12,000" required />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="bldgModel">Preferred Model</label>
+              <select class="form-control" id="bldgModel">
+                <option value="Straight Lease">Straight Lease</option>
+                <option value="Revenue Share">Revenue Share</option>
+                <option value="Management Contract">Management Contract</option>
+                <option value="Open to discussion">Open to discussion</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="bldgRent">Expected Rent (₹/sq.ft./mo)</label>
+              <input type="text" class="form-control" id="bldgRent" placeholder="e.g. 85" required />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="bldgContact">Owner / Rep Name</label>
+              <input type="text" class="form-control" id="bldgContact" placeholder="Full Name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="bldgPhone">Phone Number</label>
+              <input type="tel" class="form-control" id="bldgPhone" placeholder="+91 98765 43210" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="bldgEmail">Business Email</label>
+            <input type="email" class="form-control" id="bldgEmail" placeholder="owner@assetgroup.com" required />
+          </div>
+
+          <button type="submit" class="modal-submit-btn">Submit Property Details</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign In Modal -->
+  <div class="modal-overlay" id="authModal" role="dialog" aria-modal="true">
+    <div class="modal-content" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Sign in to SpaceWorq</h3>
+        <button class="modal-close-btn" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="authForm">
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px;">
+            Sign in to track operator inquiries, review LOIs, and manage your commercial listings.
+          </p>
+          <div class="form-group">
+            <label class="form-label" for="authContact">Email or Mobile Number</label>
+            <input type="text" class="form-control" id="authContact" placeholder="owner@assetgroup.com" required />
+          </div>
+          <button type="submit" class="modal-submit-btn">Get Verification Code</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==========================================================================
+       Footer Bar
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-row">
+        <div class="footer-copyright">
+          <img src="assets/images/logo.png" alt="SpaceWorq" style="height: 28px;" />
+          <span>Copyright @ SpaceWorQ.Com</span>
+        </div>
+        <ul class="footer-nav">
+          <li><a href="index.html">About Us</a></li>
+          <li><a href="index.html">Contact Us</a></li>
+          <li><a href="index.html">Privacy Policy</a></li>
+          <li><a href="index.html">Terms</a></li>
+          <li><a href="index.html">Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom-row">
+        <span>SpaceWorq v1.0.0 • Made in India 🇮🇳</span>
+        <div class="footer-badges">
+          <span>🔒 256-bit SSL encrypted</span>
+          <span>🛡️ PCI DSS compliant</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Instant Booking Button & Login Required Modal -->
+  <button class="floating-instant-book-btn" id="floatingInstantBookBtn" aria-label="Instant Booking" title="Instant Booking">
+    <svg class="instant-book-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+    </svg>
+    <span>Instant Booking</span>
+  </button>
+
+  <div class="modal-overlay auth-req-modal-overlay" id="authRequiredModal" role="dialog" aria-modal="true" aria-labelledby="authReqTitle">
+    <div class="auth-req-card">
+      <h3 class="auth-req-title" id="authReqTitle">Login Required</h3>
+      <p class="auth-req-sub">Please login or signup to continue.</p>
+      <div class="auth-req-actions">
+        <button type="button" class="btn-auth-cancel" id="btnAuthReqCancel">Cancel</button>
+        <a href="register.html?redirectTo=%2Fbuilding-owners.html" class="btn-auth-signup" id="btnAuthReqSignup">Signup</a>
+        <a href="login.html?redirectTo=%2Fbuilding-owners.html" class="btn-auth-login" id="btnAuthReqLogin">Login</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toastContainer = document.getElementById('toastContainer');
+
+      function showToast(msg) {
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = `<span>${msg}</span>`;
+        toastContainer.appendChild(toast);
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          setTimeout(() => toast.remove(), 300);
+        }, 3200);
+      }
+
+      // Dropdown toggle
+      const partnerDropdownItem = document.getElementById('partnerDropdownItem');
+      const partnerDropdownBtn = document.getElementById('partnerDropdownBtn');
+      const partnerDropdownMenu = document.getElementById('partnerDropdownMenu');
+
+      if (partnerDropdownBtn && partnerDropdownItem) {
+        partnerDropdownBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = partnerDropdownMenu.classList.contains('open');
+          partnerDropdownMenu.classList.toggle('open', !isOpen);
+          partnerDropdownItem.classList.toggle('open', !isOpen);
+        });
+      }
+
+      document.addEventListener('click', () => {
+        if (partnerDropdownMenu) partnerDropdownMenu.classList.remove('open');
+        if (partnerDropdownItem) partnerDropdownItem.classList.remove('open');
+      });
+
+      // Mobile Drawer
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+      const drawerBackdrop = document.getElementById('drawerBackdrop');
+      const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+
+      if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', () => {
+          mobileDrawer.classList.add('open');
+          drawerBackdrop.classList.add('open');
+        });
+      }
+      if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', () => {
+        mobileDrawer.classList.remove('open');
+        drawerBackdrop.classList.remove('open');
+      });
+      if (drawerBackdrop) drawerBackdrop.addEventListener('click', () => {
+        mobileDrawer.classList.remove('open');
+        drawerBackdrop.classList.remove('open');
+      });
+
+      // Drawer Accordion Toggle
+      const drawerPartnerBtn = document.getElementById('drawerPartnerBtn');
+      if (drawerPartnerBtn) {
+        drawerPartnerBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const parentSec = drawerPartnerBtn.closest('.drawer-dropdown-section');
+          if (parentSec) {
+            parentSec.classList.toggle('open');
+          }
+        });
+      }
+
+      // Modals
+      const buildingModal = document.getElementById('buildingModal');
+      const authModal = document.getElementById('authModal');
+
+      document.querySelectorAll('.open-submit-modal-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          buildingModal.classList.add('open');
+        });
+      });
+
+      document.querySelectorAll('.open-auth-btn').forEach(btn => {
+        btn.addEventListener('click', () => authModal.classList.add('open'));
+      });
+
+      document.querySelectorAll('.open-partner-consult-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          showToast('Connecting you with the SpaceWorq Developer Relations team...');
+          buildingModal.classList.add('open');
+        });
+      });
+
+      document.querySelectorAll('.modal-overlay').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) modal.classList.remove('open');
+        });
+        const closeBtn = modal.querySelector('.modal-close-btn');
+        if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+      });
+
+      // Floating Instant Booking & Login Required Modal
+      const floatingInstantBookBtn = document.getElementById('floatingInstantBookBtn');
+      const authRequiredModal = document.getElementById('authRequiredModal');
+      const btnAuthReqCancel = document.getElementById('btnAuthReqCancel');
+      if (floatingInstantBookBtn && authRequiredModal) {
+        floatingInstantBookBtn.addEventListener('click', () => {
+          const savedUser = localStorage.getItem('spaceworq_user') || sessionStorage.getItem('spaceworq_logged_in');
+          if (savedUser) {
+            window.location.href = 'index.html#workspacesSection';
+          } else {
+            authRequiredModal.classList.add('open');
+          }
+        });
+      }
+      if (btnAuthReqCancel && authRequiredModal) {
+        btnAuthReqCancel.addEventListener('click', () => {
+          authRequiredModal.classList.remove('open');
+        });
+      }
+
+      const buildingSubmitForm = document.getElementById('buildingSubmitForm');
+      if (buildingSubmitForm) {
+        buildingSubmitForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          buildingModal.classList.remove('open');
+          showToast('Building details submitted! Our operator acquisition team will review your space within 24 hours.');
+          buildingSubmitForm.reset();
+        });
+      }
+
+      const authForm = document.getElementById('authForm');
+      if (authForm) {
+        authForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          authModal.classList.remove('open');
+          showToast('Verification code sent to your contact details!');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
