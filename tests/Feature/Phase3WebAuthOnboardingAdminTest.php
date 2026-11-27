@@ -46,7 +46,7 @@ class Phase3WebAuthOnboardingAdminTest extends TestCase
     {
         Notification::fake();
 
-        // Register customer via web form
+        // Register customer via web form -> auto-activated and logged in -> redirects to home
         $this->post('/register', [
             'firstName' => 'Alice',
             'lastName' => 'Menon',
@@ -55,11 +55,15 @@ class Phase3WebAuthOnboardingAdminTest extends TestCase
             'password' => 'StrongPass@2026!',
             'confirm_password' => 'StrongPass@2026!',
             'terms_accepted' => '1',
-        ])->assertRedirect(route('login'));
+        ])->assertRedirect(route('home', [], false));
 
         $customer = User::where('email', 'alice.menon@example.com')->firstOrFail();
         $this->assertSame(User::TYPE_CUSTOMER, $customer->user_type);
-        $this->assertSame(User::STATUS_PENDING_ACTIVATION, $customer->status);
+        $this->assertSame(User::STATUS_ACTIVE, $customer->status);
+        $this->assertAuthenticatedAs($customer, 'web');
+
+        // Logout Alice before testing duplicate and unactivated flows
+        $this->post('/logout');
         $this->assertGuest('web');
 
         // Reject duplicate case-insensitive email and duplicate mobile
@@ -83,19 +87,29 @@ class Phase3WebAuthOnboardingAdminTest extends TestCase
             'terms_accepted' => true,
         ])->assertSessionHasErrors('mobile');
 
+        // Unactivated customer scenario verification
+        $unactivatedCustomer = User::factory()->create([
+            'email' => 'unactivated.test@example.com',
+            'mobile' => '9876509999',
+            'user_type' => User::TYPE_CUSTOMER,
+            'status' => User::STATUS_PENDING_ACTIVATION,
+            'password' => 'StrongPass@2026!',
+        ]);
+        $unactivatedCustomer->assignRole('customer');
+
         // Login blocked while pending activation
         $this->post('/login', [
-            'identifier' => 'alice.menon@example.com',
+            'identifier' => 'unactivated.test@example.com',
             'password' => 'StrongPass@2026!',
         ])->assertSessionHasErrors('identifier');
         $this->assertGuest('web');
 
         // Resend activation and capture token
-        $this->post('/auth/resend-activation', ['email' => 'ALICE.MENON@EXAMPLE.COM'])
+        $this->post('/auth/resend-activation', ['email' => 'UNACTIVATED.TEST@EXAMPLE.COM'])
             ->assertRedirect();
 
         $activationToken = null;
-        Notification::assertSentTo($customer, AccountActivationNotification::class, function ($n) use (&$activationToken) {
+        Notification::assertSentTo($unactivatedCustomer, AccountActivationNotification::class, function ($n) use (&$activationToken) {
             $ref = new \ReflectionClass($n);
             $prop = $ref->getProperty('token');
             $prop->setAccessible(true);
@@ -108,7 +122,7 @@ class Phase3WebAuthOnboardingAdminTest extends TestCase
         $this->get('/auth/verify-email?token=' . urlencode($activationToken))
             ->assertRedirect(route('login'));
 
-        $this->assertSame(User::STATUS_ACTIVE, $customer->fresh()->status);
+        $this->assertSame(User::STATUS_ACTIVE, $unactivatedCustomer->fresh()->status);
 
         // Login via web session -> NEVER creates Sanctum personal_access_tokens
         $this->post('/login', [
@@ -191,7 +205,7 @@ class Phase3WebAuthOnboardingAdminTest extends TestCase
         $this->post('/login', [
             'identifier' => 'alice.menon@example.com',
             'password' => 'ResetPass@2026!',
-        ])->assertRedirect(route('customer.profile.show', [], false));
+        ])->assertRedirect(route('home', [], false));
         $this->assertAuthenticatedAs($customer, 'web');
         $this->assertEquals(0, PersonalAccessToken::count());
     }
@@ -751,8 +765,7 @@ class Phase3WebAuthOnboardingAdminTest extends TestCase
         $this->assertContains('web', $route->gatherMiddleware());
 
         // Verify Laravel's CSRF verifier throws TokenMismatchException on unverified web POST
-        $verifier = new class(app(), app('encrypter')) extends \Illuminate\Foundation\Http\Middleware\ValidateCsrfToken
-        {
+        $verifier = new class (app(), app('encrypter')) extends \Illuminate\Foundation\Http\Middleware\ValidateCsrfToken {
             protected function runningUnitTests(): bool
             {
                 return false;
@@ -763,7 +776,7 @@ class Phase3WebAuthOnboardingAdminTest extends TestCase
         $badRequest->setLaravelSession(app('session')->driver());
 
         $this->expectException(TokenMismatchException::class);
-        $verifier->handle($badRequest, fn () => response('OK'));
+        $verifier->handle($badRequest, fn() => response('OK'));
     }
 
     private function createSuperAdmin(): User

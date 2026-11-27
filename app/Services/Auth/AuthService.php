@@ -26,9 +26,9 @@ class AuthService
     ) {
     }
 
-    public function registerCustomer(array $data): User
+    public function registerCustomer(array $data, bool $autoActivate = true): User
     {
-        $user = DB::transaction(function () use ($data): User {
+        $user = DB::transaction(function () use ($data, $autoActivate): User {
             $user = User::query()->create([
                 'first_name' => trim($data['first_name']),
                 'last_name' => trim($data['last_name']),
@@ -36,7 +36,8 @@ class AuthService
                 'email' => strtolower(trim($data['email'])),
                 'mobile' => trim($data['mobile']),
                 'user_type' => User::TYPE_CUSTOMER,
-                'status' => User::STATUS_PENDING_ACTIVATION,
+                'status' => $autoActivate ? User::STATUS_ACTIVE : User::STATUS_PENDING_ACTIVATION,
+                'email_verified_at' => $autoActivate ? now() : null,
                 'password' => $data['password'],
             ]);
 
@@ -47,11 +48,14 @@ class AuthService
                 'company_name' => $data['company_name'] ?? null,
             ]);
 
-            $plainToken = $this->issueActivationToken($user, ActivationToken::TYPE_CLIENT);
-            $user->notify(new AccountActivationNotification($plainToken, ActivationToken::TYPE_CLIENT));
+            if (! $autoActivate) {
+                $plainToken = $this->issueActivationToken($user, ActivationToken::TYPE_CLIENT);
+                $user->notify(new AccountActivationNotification($plainToken, ActivationToken::TYPE_CLIENT));
+            }
 
             $this->auditLogService->log('auth.customer_registered', $user, $user, [
                 'email' => $user->email,
+                'auto_activated' => $autoActivate,
             ]);
 
             return $user;

@@ -33,7 +33,7 @@ class AuthController extends Controller
 
     public function register(CustomerRegisterRequest $request): JsonResponse
     {
-        $user = $this->authService->registerCustomer($request->validated());
+        $user = $this->authService->registerCustomer($request->validated(), false);
 
         return response()->json([
             'message' => 'Account created successfully. Please check your email to activate your account.',

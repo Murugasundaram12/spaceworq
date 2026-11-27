@@ -49,7 +49,10 @@ class CustomerAuthController extends Controller
     public function showRegister(Request $request): View|Response
     {
         return $this->renderPortalView('customer.auth.register', [
-            'redirectTo' => $this->redirectSafety->sanitize($request->query('redirectTo'), '/'),
+            'redirectTo' => $this->redirectSafety->sanitize(
+                $request->query('redirectTo') ?? $request->query('redirect_to'),
+                route('home', [], false)
+            ),
         ]);
     }
 
@@ -68,18 +71,29 @@ class CustomerAuthController extends Controller
 
     public function register(WebCustomerRegisterRequest $request): JsonResponse|RedirectResponse
     {
-        $user = $this->authService->registerCustomer($request->validated());
-        $message = 'Account created successfully. Please check your email to activate your account.';
+        $user = $this->authService->registerCustomer($request->validated(), true);
+
+        Auth::guard('web')->login($user);
+        $request->session()->regenerate();
+
+        $defaultDestination = route('home', [], false);
+        $rawRedirect = $request->input('redirect_to') ?? $request->input('redirectTo');
+        $redirectTo = ($rawRedirect && $rawRedirect !== '/')
+            ? $this->redirectSafety->sanitize($rawRedirect, $defaultDestination)
+            : $defaultDestination;
+
+        $message = 'Account registered and activated successfully.';
 
         if ($request->expectsJson()) {
             return response()->json([
                 'message' => $message,
                 'email' => $user->email,
-                'requires_activation' => true,
+                'requires_activation' => false,
+                'redirect_to' => $redirectTo,
             ], 201);
         }
 
-        return redirect()->route('login')->with('status', $message);
+        return redirect()->to($redirectTo)->with('status', $message);
     }
 
     public function login(LoginRequest $request): JsonResponse|RedirectResponse
@@ -105,7 +119,7 @@ class CustomerAuthController extends Controller
         Auth::guard('web')->login($user, (bool) ($validated['remember'] ?? false));
         $request->session()->regenerate();
 
-        $redirectTo = $this->redirectSafety->sanitize($validated['redirect_to'] ?? null, route('customer.profile.show', [], false));
+        $redirectTo = $this->redirectSafety->sanitize($validated['redirect_to'] ?? null, route('home', [], false));
 
         if ($request->expectsJson()) {
             return response()->json([

@@ -15,6 +15,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
 
 class WebsiteController extends Controller
@@ -30,30 +31,44 @@ class WebsiteController extends Controller
         }
 
         return $this->renderPortalView('website.home', [
-            'cities' => City::query()->where('is_active', true)->orderBy('sort_order')->get(),
-            'categories' => WorkspaceCategory::query()->where('is_active', true)->with('subcategories')->orderBy('sort_order')->get(),
-            'amenities' => Amenity::query()->where('is_active', true)->orderBy('sort_order')->get(),
-            'workspaces' => Workspace::query()->published()->with(['city', 'category', 'subcategory', 'listingConfigs'])->latest('id')->limit(18)->get(),
+            'cities' => Schema::hasTable('cities')
+                ? City::query()->where('is_active', true)->orderBy('sort_order')->get()
+                : collect(),
+            'categories' => Schema::hasTable('workspace_categories')
+                ? WorkspaceCategory::query()->where('is_active', true)->with('subcategories')->orderBy('sort_order')->get()
+                : collect(),
+            'amenities' => Schema::hasTable('amenities')
+                ? Amenity::query()->where('is_active', true)->orderBy('sort_order')->get()
+                : collect(),
+            'workspaces' => Schema::hasTable('workspaces')
+                ? Workspace::query()->published()->with(['city', 'locality', 'category', 'subcategory', 'listingConfigs', 'amenities', 'images'])->latest('id')->limit(18)->get()
+                : collect(),
         ]);
     }
 
     public function expansion(): View|Response
     {
         return $this->renderPortalView('website.expansion', [
-            'cities' => City::query()->where('is_active', true)->orderBy('sort_order')->get(),
-            'workspaces' => Workspace::query()
-                ->published()
-                ->whereHas('subcategory', fn ($q) => $q->whereIn('code', ['OFFICE_COMMERCIAL', 'NEW_BUILDING']))
-                ->with(['city', 'subcategory', 'listingConfigs'])
-                ->latest('id')
-                ->get(),
+            'cities' => Schema::hasTable('cities')
+                ? City::query()->where('is_active', true)->orderBy('sort_order')->get()
+                : collect(),
+            'workspaces' => Schema::hasTable('workspaces')
+                ? Workspace::query()
+                    ->published()
+                    ->whereHas('subcategory', fn ($q) => $q->whereIn('code', ['OFFICE_COMMERCIAL', 'NEW_BUILDING']))
+                    ->with(['city', 'locality', 'subcategory', 'listingConfigs'])
+                    ->latest('id')
+                    ->get()
+                : collect(),
         ]);
     }
 
     public function workspaceProviders(): View|Response
     {
         return $this->renderPortalView('website.partner.workspace-providers', [
-            'cities' => City::query()->where('is_active', true)->orderBy('sort_order')->get(),
+            'cities' => Schema::hasTable('cities')
+                ? City::query()->where('is_active', true)->orderBy('sort_order')->get()
+                : collect(),
             'inquiryType' => 'WORKSPACE_PROVIDER',
         ]);
     }
@@ -61,7 +76,9 @@ class WebsiteController extends Controller
     public function buildingOwners(): View|Response
     {
         return $this->renderPortalView('website.partner.building-owners', [
-            'cities' => City::query()->where('is_active', true)->orderBy('sort_order')->get(),
+            'cities' => Schema::hasTable('cities')
+                ? City::query()->where('is_active', true)->orderBy('sort_order')->get()
+                : collect(),
             'inquiryType' => 'BUILDING_OWNER',
         ]);
     }
@@ -69,7 +86,9 @@ class WebsiteController extends Controller
     public function developers(): View|Response
     {
         return $this->renderPortalView('website.partner.developers', [
-            'cities' => City::query()->where('is_active', true)->orderBy('sort_order')->get(),
+            'cities' => Schema::hasTable('cities')
+                ? City::query()->where('is_active', true)->orderBy('sort_order')->get()
+                : collect(),
             'inquiryType' => 'DEVELOPER',
         ]);
     }

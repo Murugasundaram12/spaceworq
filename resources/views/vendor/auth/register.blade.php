@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+  <title>Create Partner Account — AdminPanel</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Bootstrap 5 CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+
+  <!-- Custom Auth Styles -->
+  <link rel="stylesheet" href="{{ asset('vendor-panel/css/auth.css') }}" />
+</head>
+<body>
+  <main class="auth-wrapper">
+    <!-- Mobile Compact Brand Header -->
+    <header class="mobile-brand-header">
+      <a href="{{ route('provider.login') }}" class="brand-logo" aria-label="AdminPanel Home">
+        <svg class="brand-logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="3" y="3" width="13" height="13" rx="3.5" fill="#FFFFFF" />
+          <rect x="20" y="3" width="13" height="13" rx="3.5" fill="#FFFFFF" fill-opacity="0.72" />
+          <rect x="3" y="20" width="13" height="13" rx="3.5" fill="#FFFFFF" fill-opacity="0.72" />
+          <rect x="20" y="20" width="13" height="13" rx="3.5" fill="#FFFFFF" />
+        </svg>
+        <span class="brand-logo-text">AdminPanel</span>
+      </a>
+    </header>
+
+    <!-- Left Hero Brand Panel -->
+    <section class="auth-brand-panel" aria-label="AdminPanel platform highlights">
+      <div class="auth-brand-content">
+        <a href="{{ route('provider.login') }}" class="brand-logo" aria-label="AdminPanel Home">
+          <svg class="brand-logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="3" width="13" height="13" rx="3.5" fill="#FFFFFF" />
+            <rect x="20" y="3" width="13" height="13" rx="3.5" fill="#FFFFFF" fill-opacity="0.72" />
+            <rect x="3" y="20" width="13" height="13" rx="3.5" fill="#FFFFFF" fill-opacity="0.72" />
+            <rect x="20" y="20" width="13" height="13" rx="3.5" fill="#FFFFFF" />
+          </svg>
+          <span class="brand-logo-text">AdminPanel</span>
+        </a>
+
+        <h1 class="brand-heading">
+          Manage your<br />
+          workspace with<br />
+          confidence
+        </h1>
+
+        <p class="brand-description">
+          Configure workspaces, floors, bays and meeting rooms. Set flexible pricing
+          and visualise your inventory &mdash; all in one place.
+        </p>
+
+        <ul class="brand-features">
+          <li>Drag-and-drop floor plan builder</li>
+          <li>Granular pricing per seat, bay or floor</li>
+          <li>Meeting rooms with shared workspace mode</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Right Registration Form Panel -->
+    <section class="auth-form-panel" aria-label="Create partner account form">
+      <div class="auth-form-container">
+        <h2 class="auth-title">Create partner account</h2>
+        <p class="auth-subtitle">
+          Register as a Space Partner and start managing your workspace inventory.
+        </p>
+
+        <div id="registerAlert" aria-live="polite"></div>
+
+        @include('partials.alerts')
+        <form id="registerForm" method="POST" action="{{ route('provider.register.submit') }}" novalidate>
+          @csrf
+          <!-- First Name & Last Name -->
+          <div class="row gx-3">
+            <div class="col-sm-6">
+              <div class="sw-field">
+                <input
+                  type="text"
+                  id="firstName"
+                  name="first_name" value="{{ old('first_name') }}"
+                  class="sw-input"
+                  placeholder=" "
+                  autocomplete="given-name"
+                  required
+                />
+                <label for="firstName" class="sw-label">First name</label>
+                <div class="sw-error-msg">First name is required.</div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="sw-field">
+                <input
+                  type="text"
+                  id="lastName"
+                  name="last_name" value="{{ old('last_name') }}"
+                  class="sw-input"
+                  placeholder=" "
+                  autocomplete="family-name"
+                  required
+                />
+                <label for="lastName" class="sw-label">Last name</label>
+                <div class="sw-error-msg">Last name is required.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="sw-field">
+            <input
+              type="email"
+              id="registerEmail"
+              name="email" value="{{ old('email') }}"
+              class="sw-input"
+              placeholder=" "
+              autocomplete="email"
+              required
+            />
+            <label for="registerEmail" class="sw-label">Email</label>
+            <div class="sw-error-msg">Please enter a valid email address.</div>
+          </div>
+
+          <!-- Mobile -->
+          <div class="sw-field">
+            <input
+              type="tel"
+              id="registerMobile"
+              name="mobile" value="{{ old('mobile') }}"
+              class="sw-input"
+              placeholder=" "
+              autocomplete="tel"
+              required
+            />
+            <label for="registerMobile" class="sw-label">Mobile</label>
+            <div class="sw-error-msg">Please enter a valid mobile number.</div>
+          </div>
+
+          <!-- Password -->
+          <div class="sw-field">
+            <input
+              type="password"
+              id="registerPassword"
+              name="password"
+              class="sw-input sw-input-password"
+              placeholder=" "
+              autocomplete="new-password"
+              required
+            />
+            <label for="registerPassword" class="sw-label">Password</label>
+            <button
+              type="button"
+              class="password-toggle-btn"
+              data-toggle-password="registerPassword"
+              aria-label="Show password"
+              aria-pressed="false"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+            <div class="sw-error-msg">Password must be at least 8 characters.</div>
+            <div id="passwordStrengthWrap" class="password-strength-wrap" aria-live="polite">
+              <div class="password-strength-bars">
+                <span class="strength-bar"></span>
+                <span class="strength-bar"></span>
+                <span class="strength-bar"></span>
+                <span class="strength-bar"></span>
+              </div>
+              <span id="passwordStrengthLabel" class="password-strength-label"></span>
+            </div>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="sw-field mb-4">
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirm_password"
+              class="sw-input sw-input-password"
+              placeholder=" "
+              autocomplete="new-password"
+              required
+            />
+            <label for="confirmPassword" class="sw-label">Confirm password</label>
+            <button
+              type="button"
+              class="password-toggle-btn"
+              data-toggle-password="confirmPassword"
+              aria-label="Show password"
+              aria-pressed="false"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+            <div class="sw-error-msg">Passwords do not match.</div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="registerSubmitBtn" class="btn-sw-primary">
+            Create partner account
+          </button>
+        </form>
+
+        <!-- Footer Sign In Link -->
+        <p class="auth-footer-centered">
+          Already registered? <a href="{{ route('provider.login') }}" class="sw-link">Sign in</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- Custom Auth Scripts -->
+  <script>window.__SW_AUTH_MODE__ = "server";</script>
+  <script src="{{ asset('vendor-panel/js/auth.js') }}"></script>
+</body>
+</html>
